@@ -1,0 +1,64 @@
+# Site settings
+title: "Sebastian (Sebo) Diaz"
+description: "Sebo's Personal Website"
+baseurl: "sd_web"
+
+# Build settings
+markdown: kramdown
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Resume settings
+resume_avatar:                  "true"
+resume_name:                    "Sebastian (Sebo) Diaz"
+resume_title:                   "University of Arizona – Undergraduate"
+
+# used for the contact button in _layouts/resume.html
+resume_contact_email:           "sebastiandiaz@email.arizona.edu"
+
+# the next two items are used for schema itemprops in _layouts/resume.html
+resume_contact_telephone:       "555-7334"
+resume_contact_address:         "742 Evergreen Terrace, Springfield"
+
+resume_header_contact_info:     "742 Evergreen Terrace, Springfield • 555-7334 • lisasimpson@youremailaddress.com"
+display_header_contact_info:    "false"
+
+resume_header_intro: "<p>Hey! I am Sebo, a current undergraduate student at the University of Arizona majoring in Biomedical Engineering with a minor in Mathematics. Research interests lie in biomedical imaging and optics. I also enjoy teaching, sports, and working out.</p><p><i><b>*This is a temporary website.</b></i></p>"
+
+# use "yes" to display the email contact button,
+# "no" to display an "I'm not looking for work" message,
+# or remove the resume_looking_for_work option entirely
+# to leave blank
+resume_looking_for_work:        ""
+
+# Decide which sections to use
+# comment out to hide
+resume_section_experience:      false
+resume_section_education:       false
+resume_section_projects:        false
+resume_section_skills:          false
+resume_section_recognition:     false
+resume_section_links:           false
+resume_section_associations:    false
+# resume_section_interests:       true
+
+# Resume social links
+# uncomment the options you wish to display, and add your own URL
+resume_social_links:
+  resume_github_url:            "https://github.com/sebodiaz"
+  resume_twitter_url:           "http://twitter.com/DiazSebo"
+  #resume_dribbble_url:          "https://dribbble.com/jag"
+  # resume_facebook_url:          "insert Facebook URL here"
+  resume_linkedin_url:          "https://www.linkedin.com/in/sebastian-d-diaz"
+  # resume_instagram_url:         "insert your Instagram URL here"
+  #resume_website_url:           "http://joelglovier.com"
+  #resume_medium_url:            "https://medium.com/@jglovier"
+resume_print_social_links:      true
+
+# Design settings
+resume_theme:                   default
+
+# Note: when editing locally, remember to restart
+# your Jekyll server when you edit this file. Changes
+# to _config.yml are only recognized when the server starts
