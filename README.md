@@ -69,6 +69,10 @@ To add a new publication or modify an existing one:
 1.  **Open `index.html`.**
 2.  Edit the text content in the "About Me" section or update the `href` attributes for your social and resume links.
 
+---
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
