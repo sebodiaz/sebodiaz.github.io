@@ -8,7 +8,6 @@ The website is designed to be clean, responsive, and easy to navigate, built wit
 
 -   [Features](#features)
 -   [Folder Structure](#folder-structure)
--   [Basic Usage](#basic-usage)
 -   [Development](#development)
 -   [License](#license)
 -   [Acknowledgments](#acknowledgments)
@@ -46,25 +45,6 @@ The project is organized into clear, modular directories for easy management.
 │   └── resume.pdf        # Your resume file
 └── index.html            # The main entry point of the website
 ```
-
-## Basic Usage
-
-To view this website locally or understand its live deployment:
-
-1.  **Clone the repository:**
-    ```bash
-    git clone [https://github.com/sebodiaz/sebodiaz.github.io.git](https://github.com/sebodiaz/sebodiaz.github.io.git)
-    ```
-2.  **Navigate into the project directory:**
-    ```bash
-    cd sebodiaz.github.io
-    ```
-3.  **Open `index.html`:** Simply open the `index.html` file in your preferred web browser (e.g., by double-clicking it).
-
-**Live Website:**
-
-This website is hosted directly via GitHub Pages and is live at:
-[**https://sebodiaz.github.io**](https://sebodiaz.github.io)
 
 ---
 
