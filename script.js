@@ -13,7 +13,7 @@ const publicationsData = [
   },
   {
     imageSrc: './images/publications/slfrank_diaz_ismrm_2024.png',
-    caption: '(Top) Gold standard HASTE (TSE) pulse design image, SAR limits (red) are hit. (Bottom) SLfRank pulse design image. SAR limits are not hit and reduced by 22%.',
+    caption: 'Images are in-utero fetal brain acquisitions. (Top) Gold standard HASTE (TSE) pulse design image, SAR limits (red) are hit. (Bottom) SLfRank pulse design image. SAR limits are not hit and reduced by 22%.',
     title: 'Design of Novel RF Pulse for Fetal MRI Refocusing Trains using Rank Factorization (SLfRank) to Reduce SAR and Improve Image Acquisition Efficiency',
     status: 'ISMRM 2022.',
     authors: '<strong>Sebo Diaz</strong>, Yamin Arefeen, Borjan Gagoski, Ellen Grant, Elfar Adalsteinsson',
