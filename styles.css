@@ -74,11 +74,10 @@ footer.footer {
     /* optional subtle top border */
 }
 
+/* Highlighted text selection styles */
 ::selection {
-    background: #ffcc00;
-    /* Highlight background color */
-    color: #000000;
-    /* Highlighted text color */
+  background: #E0BBE4; /* Light purplish background color */
+  color: #000000;      /* Highlighted text color (black for good contrast) */
 }
 
 /* Lightbox styles */
