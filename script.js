@@ -23,12 +23,12 @@ const publicationsData = [
     ]
   },
   {
-    imageSrc: 'https://via.placeholder.com/600x400',
-    caption: 'Fetuses Made Simple: Modeling and Tracking of Fetal Shape and Pose',
+    imageSrc: './images/publications/bodymodel_liu_miccai_2025.png',
+    caption: 'Body model as applied to Echo Planar Imaging (EPI) sequences. The body model is used to estimate the fetal pose and shape from segmentations and keypoint estimations.',
     title: 'Fetuses Made Simple: Modeling and Tracking of Fetal Shape and Pose',
     status: 'MICCAI 2025.',
     authors: 'Yingcheng Liu, Peiqi Wang, <strong>Sebo Diaz</strong>, Benjamin Billot, Esra Abaci Turk, Ellen Grant, Polina Golland',
-    description: '',
+    description: 'Analyzing fetal body motion and shape is paramount in pre-natal diagnostics and monitoring. Existing methods mainly rely on keypoints or volumetric segmentations of the fetal body. Keypoints oversimplify the body structure, while segmentation lacks temporal correspondence. To address these shortcomings, we construct a 3D articulated statistical fetal body model based on the Skinned Multi-Person Linear Model (SMPL). ',
     buttons: []
   },
   {
