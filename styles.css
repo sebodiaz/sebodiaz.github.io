@@ -1,0 +1,197 @@
+.profile-pic {
+      max-width: 225px;
+      border-radius: 50%;
+    }
+
+.social-icons {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.social-icons .button {
+    margin: 5px;
+}
+
+.publication-text {
+    text-align: left;
+}
+
+@media (min-width: 769px) {
+    .publication-columns {
+    display: flex;
+    align-items: flex-start;
+    }
+}
+
+.button.is-light {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease;
+}
+
+.button.is-light:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.main-container {
+    max-width: 900px;
+    /* max width when screen is large */
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    /* shrink on smaller screens */
+    padding-left: 1rem;
+    /* some horizontal padding */
+    padding-right: 1rem;
+    box-sizing: border-box;
+    /* includes padding in width */
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.vspace {
+    margin-bottom: 10px;
+    /* You can change 30px to any value you prefer */
+}
+
+footer.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    /* or match your page background */
+    padding: 1rem 0;
+    box-shadow: none;
+    /* no shadow */
+    border-top: 1px solid #ddd;
+    /* optional subtle top border */
+}
+
+::selection {
+    background: #ffcc00;
+    /* Highlight background color */
+    color: #000000;
+    /* Highlighted text color */
+}
+
+/* Lightbox styles */
+.lightbox {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1000;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Black w/ opacity */
+    flex-direction: column;
+    /* Arrange items vertically */
+    align-items: center;
+    /* Center horizontally */
+    justify-content: center;
+    /* Center vertically */
+}
+
+/* This class makes the lightbox visible and enables flexbox centering */
+.lightbox.is-active {
+    display: flex;
+}
+
+.lightbox-content {
+    /* Removed margin: auto; */
+    display: block; /* Still block to take full width within flex item if needed */
+    max-width: 90%;
+    max-height: 70%; /* Reduced height to accommodate caption */
+    object-fit: contain;
+    /* Ensure the whole image is visible */
+    animation-name: zoom;
+    animation-duration: 1.0s;
+}
+
+/* Add Animation */
+@keyframes zoom {
+    from {
+    transform: scale(0.5)
+    }
+
+    to {
+    transform: scale(1)
+    }
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    z-index: 1001;
+    /* Ensure close button is above the image */
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Caption styles */
+.caption-text {
+    color: #f1f1f1;
+    font-size: 18px;
+    padding: 10px 0;
+    text-align: center;
+    margin-top: 10px;
+    /* Space between image and caption */
+    max-width: 90%;
+    /* Match image width */
+    box-sizing: border-box;
+    /* Include padding in width calculation */
+}
+
+.image-lightbox-trigger {
+cursor: pointer; /* Changes cursor to a hand icon */
+display: block; /* Ensures the entire area is clickable and transformable */
+overflow: hidden; /* Hides parts of the image that might extend beyond the container during transform */
+}
+
+.image-lightbox-trigger img {
+transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition for hover effects */
+}
+
+.image-lightbox-trigger:hover img {
+transform: scale(1.10); /* Slightly zooms in the image */
+box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Adds a stronger shadow on hover */
+}
+
+.click-hint {
+text-align: center;
+font-size: 0.9em;
+color: #bbb; /* Light gray text */
+margin-top: 5px;
+opacity: 0; /* Hidden by default */
+transition: opacity 0.3s ease-in-out; /* Smooth fade-in */
+}
+
+.image-lightbox-trigger:hover .click-hint {
+opacity: 1; /* Shows on hover */
+}

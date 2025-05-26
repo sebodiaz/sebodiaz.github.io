@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sebo Diaz</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="./images/favicons/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="./images/favicons/favicon.svg" />
+  <link rel="shortcut icon" href="./images/favicons/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./images/favicons/apple-touch-icon.png" />
+  <link rel="manifest" href="./images/favicons/site.webmanifest" />
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <section class="section">
+    <div class="main-container">
+      <div class="columns is-vcentered">
+        <div class="column is-narrow has-text-centered">
+          <figure class="image is-inline-block">
+            <img class="profile-pic" src="./images/profile/headshot.jpg" alt="Profile Picture">
+          </figure>
+        </div>
+        <div class="column">
+          <h1 class="title is-3">Sebastian "Sebo" Diaz</h1>
+          <div class="content mt-2">
+
+            <p>
+              I am a MIT CSAIL & RLE PhD student working under
+              <a href="https://imes.mit.edu/people/adalsteinsson-elfar" target="_blank">Prof. Elfar Adalsteinsson</a> and
+              <a href="https://people.csail.mit.edu/polina/" target="_blank">Prof. Polina Golland</a>.
+              My interests reside in machine learning, optimization, and algorithms with a focus on applying them to challenging problems.
+            </p>
+
+            <p>
+              In 2023, I graduated from the University of Arizona where I was fortunate
+              to be mentored by
+              <a href="https://bme.engineering.arizona.edu/faculty-staff/faculty/arthur-gmitro" target="_blank">Prof. Arthur Gmitro</a>,
+              <a href="https://bme.engineering.arizona.edu/faculty-staff/faculty/jennifer-barton" target="_blank">Prof. Jennifer Barton</a>, and
+              <a href="https://bme.engineering.arizona.edu/faculty-staff/faculty/nan-kuei-chen" target="_blank">Prof. Nan-kuei Chen</a>.
+            </p>
+
+
+          </div>
+          <div class="buttons social-icons is-flex is-justify-content-start mt-4">
+            <a class="button is-light" href="#"><span class="icon"><i class="fas fa-envelope"></i></span><span>Email</span></a>
+            <a class="button is-light" href="https://www.twitter.com/DiazSebo"><span class="icon"><i class="fab fa-twitter"></i></span><span>Twitter</span></a>
+            <a class="button is-light" href="#"><span class="icon"><i class="fab fa-github"></i></span><span>Github</span></a>
+            <a class="button is-light" href="#"><span class="icon"><i class="fab fa-linkedin"></i></span><span>LinkedIn</span></a>
+            <a class="button is-light" href="#"><span class="icon"><i class="fas fa-file-alt"></i></span><span>Resume</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="main-container">
+      <h2 class="title is-4">Publications</h2>
+      <div id="publications-container">
+        </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="main-container has-text-centered">
+      <p>Design heavily inspired by <a href="http://horwitz.ai" target="_blank" rel="noopener noreferrer">http://horwitz.ai</a>.</p>
+    </div>
+  </section>
+
+  <div id="lightbox" class="lightbox">
+    <span class="close-button">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" src="">
+    <div id="lightbox-caption" class="caption-text"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
