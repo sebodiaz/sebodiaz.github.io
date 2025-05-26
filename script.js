@@ -1,7 +1,7 @@
 const publicationsData = [
   {
     imageSrc: './images/publications/pose_diaz_review_2025.png',
-    caption: 'Qualtitative results. Pictured are challenging, lower GA subjects. Noticeably, our method significantly improves the pose estimation.',
+    caption: 'Qualtitative results. Pictured are challenging, lower GA subjects. Noticeably, our method significantly improves the estimated pose. PCK = Percentage of Correct Keypoints.',
     title: 'Robust Fetal Pose Estimation across Gestational Ages via Cross-Population Augmentation',
     status: 'In Review.',
     authors: '<strong>Sebo Diaz</strong>, Benjamin Billot, Neel Dey, Molin Zhang, Esra Abaci-Turk, Ellen Grant, Polina Golland, Elfar Adalsteinsson',
