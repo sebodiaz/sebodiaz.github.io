@@ -7,7 +7,8 @@ const publicationsData = [
     authors: '<strong>Sebo Diaz</strong>, Benjamin Billot, Neel Dey, Molin Zhang, Esra Abaci-Turk, Ellen Grant, Polina Golland, Elfar Adalsteinsson',
     description: 'Current fetal pose estimation methods fail to generalize across gestational ages (GA). We propose a novel method to capture lower GA subjects using exclusively higher GA subjects. We achieve state-of-the-art performance on a challenging clinical dataset enabling more accurate motion estimation.',
     buttons: [
-      { text: 'arXiv [Soon]', link: '#', disabled: true },
+      { text: 'MICCAI Publication', link: 'https://papers.miccai.org/miccai-2025/0789-Paper3296.html',},
+      { text: 'arXiv', link: 'https://arxiv.org/abs/2509.12062v1', disabled: false },
       { text: 'GitHub', link: 'https://github.com/sebodiaz/cross-population-pose', }
     ]
   },
@@ -19,7 +20,7 @@ const publicationsData = [
     authors: '<strong>Sebo Diaz</strong>, Yamin Arefeen, Borjan Gagoski, Ellen Grant, Elfar Adalsteinsson',
     description: 'Relaxed optimization problem enables significant image acceleration. We show <em>22%</em> acceleration compared to industry standard with no tradeoffs. Applications in fetal, but pertains to any turbo spin echo sequence.',
     buttons: [
-      { text: 'ISMRM Proceedings', link: 'https://archive.ismrm.org/2022/2926.html' }
+      { text: 'ISMRM Publication', link: 'https://archive.ismrm.org/2022/2926.html' }
     ]
   },
   {
@@ -29,7 +30,12 @@ const publicationsData = [
     status: 'MICCAI 2025.',
     authors: 'Yingcheng Liu, Peiqi Wang, <strong>Sebo Diaz</strong>, Benjamin Billot, Esra Abaci Turk, Ellen Grant, Polina Golland',
     description: 'Analyzing fetal body motion and shape is paramount in pre-natal diagnostics and monitoring. Existing methods mainly rely on keypoints or volumetric segmentations of the fetal body. Keypoints oversimplify the body structure, while segmentation lacks temporal correspondence. To address these shortcomings, we construct a 3D articulated statistical fetal body model based on the Skinned Multi-Person Linear Model (SMPL). ',
-    buttons: []
+    buttons: [
+      { text: 'MICCAI Publication', link: 'https://papers.miccai.org/miccai-2025/0333-Paper4748.html'},
+      { text: 'arXiv', link: 'https://arxiv.org/abs/2506.17858'},
+      { text: 'GitHub', link: 'https://github.com/MedicalVisionGroup/fetal-smpl'},
+      
+    ]
   },
   {
     imageSrc: './images/publications/stochastic_offset_ismrm_2024.png',
@@ -39,7 +45,7 @@ const publicationsData = [
     authors: 'Molin Zhang, Nicholas Arango, <strong>Sebo Diaz</strong>, Jacob White, Elfar Adalsteinsson',
     description: 'Voxel-wise objective function with auto-differentiation for RF pulse optimization has become prevalent. While benefit from the spatial flexibility of desired pattern, conventional fixed-point representation of a matrix fed into the voxel-wise objective function leads to sub-optimal and undesired resultant profile at courser resolution. We assign random spatial offsets to each point centered at the voxel and show superior performance to fixed-point representations.',
     buttons: [
-      { text: 'ISMRM Proceedings', link: 'https://submissions.mirasmart.com/ISMRM2024/Itinerary/PresentationDetail.aspx?evdid=5606' }
+      { text: 'ISMRM Publication', link: 'https://submissions.mirasmart.com/ISMRM2024/Itinerary/PresentationDetail.aspx?evdid=5606' }
     ]
   }
 ];
