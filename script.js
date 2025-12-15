@@ -50,6 +50,52 @@ const publicationsData = [
   }
 ];
 
+const newsItems = [
+  {
+    date: "2025-12-12",
+    text: "Invited MIT IMES Seminar talk."
+  },
+  {
+    date: "2025-09-29",
+    text: "Invited MIT IMES Retreat talk."
+  },
+  {
+    date: "2025-06-20",
+    text: "MICCAI paper accepted."
+  },
+  {
+    date: "2024-04-15",
+    text: "Awarded NSF GRFP."
+  }
+];
+
+const newsContainer = document.getElementById("news-container");
+
+// Sort newest first
+newsItems.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+newsItems.forEach(item => {
+  const newsEntry = document.createElement("div");
+  newsEntry.classList.add("news-item", "mb-3");
+
+  newsEntry.innerHTML = `
+    <div class="columns is-mobile">
+      <div class="column is-narrow has-text-grey">
+        <strong>${new Date(item.date).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "short"
+        })}</strong>
+      </div>
+      <div class="column">
+        ${item.text}
+      </div>
+    </div>
+  `;
+
+  newsContainer.appendChild(newsEntry);
+});
+
+
 
 document.addEventListener('DOMContentLoaded', function() {
   const lightbox = document.getElementById('lightbox');
