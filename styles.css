@@ -195,3 +195,12 @@ transition: opacity 0.3s ease-in-out; /* Smooth fade-in */
 .image-lightbox-trigger:hover .click-hint {
 opacity: 1; /* Shows on hover */
 }
+
+.news-item {
+  border-left: 2px solid #ddd;
+  padding-left: 1rem;
+}
+
+.news-item strong {
+  font-family: 'Nunito', sans-serif;
+}
