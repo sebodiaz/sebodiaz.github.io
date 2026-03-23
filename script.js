@@ -1,5 +1,19 @@
 const publicationsData = [
   {
+    imageSrc: './images/publications/invariant_sebo_review.png',
+    caption: '(Left) RepreSeg code and (Right) PGM that motivates our method.',
+    title: 'Why Invariannce Alone is Not Enough for Medical Domain Generalization (and How to Fix It)',
+    status: 'In Review.',
+    authors: "<strong>Sebo Diaz</strong>, Polina Golland, Elfar Adalsteinsson, Neel Dey",
+    description: 'Invariance is a common inductive bias for domain generalization. However, we show that it can lead to sub-optimal performance. We propose a simple and theoretically grounded intervention that exploits invariance and domain-specific information which achieves high-sample efficiency and competitive performance.',
+    buttons: [
+      { text: 'arXiv', link: 'google.com', disabled: true },
+      { text: 'GitHub', link: 'google.com', disabled: true }
+    ]
+  },
+
+
+  {
     imageSrc: './images/publications/pose_diaz_review_2025.png',
     caption: 'Qualtitative results. Pictured are challenging, lower GA subjects. Noticeably, our method significantly improves the estimated pose. PCK = Percentage of Correct Keypoints.',
     title: 'Robust Fetal Pose Estimation across Gestational Ages via Cross-Population Augmentation',
