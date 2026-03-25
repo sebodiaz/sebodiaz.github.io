@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RepreSeg</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../../images/favicons/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="../../images/favicons/favicon.svg" />
+  <link rel="shortcut icon" href="../../images/favicons/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../images/favicons/apple-touch-icon.png" />
+  <link rel="stylesheet" href="../../styles.css">
+  <style>
+    .project-title {
+      font-family: 'Merriweather', serif;
+      font-size: 2rem;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+    .author-list {
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+    }
+    .venue-tag {
+      display: inline-block;
+      background: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 0.2rem 0.7rem;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    .section-divider {
+      border: none;
+      border-top: 1px solid #e8e8e8;
+      margin: 2rem 0;
+    }
+    .abstract-text {
+      font-size: 1rem;
+      line-height: 1.8;
+      text-align: justify;
+    }
+    .figure-caption {
+      font-size: 0.88rem;
+      color: #666;
+      text-align: center;
+      margin-top: 0.75rem;
+      line-height: 1.5;
+    }
+    .bibtex-box {
+      background: #f8f8f8;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 1.25rem 1.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      white-space: pre;
+      overflow-x: auto;
+      line-height: 1.6;
+    }
+    .back-link {
+      font-size: 0.9rem;
+      color: #888;
+    }
+    .back-link:hover {
+      color: #333;
+    }
+    .method-name {
+      font-family: 'Merriweather', serif;
+    }
+    .result-placeholder {
+      background: #f5f5f5;
+      border: 2px dashed #ccc;
+      border-radius: 8px;
+      padding: 3rem 2rem;
+      text-align: center;
+      color: #aaa;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Back to home -->
+  <section class="section pb-0 pt-5">
+    <div class="main-container">
+      <a class="back-link" href="../../index.html">
+        <span class="icon"><i class="fas fa-arrow-left"></i></span>
+        <span>Back to home</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Header -->
+  <section class="section pb-4">
+    <div class="main-container has-text-centered">
+      <h1 class="project-title">
+        Why Invariance Alone is Not Enough for Medical Domain Generalization (and How to Fix It)
+      </h1>
+      <p class="author-list">
+        <strong>Sebo Diaz</strong><sup>1</sup>,
+        Polina Golland<sup>1</sup>,
+        Elfar Adalsteinsson<sup>1</sup>,
+        Neel Dey<sup>2</sup>
+      </p>
+      <p style="font-size:0.9rem; color:#666; margin-bottom:1rem;">
+        <sup>1</sup>MIT &nbsp;&nbsp;
+        <sup>2</sup>Harvard Medical School
+      </p>
+      <p class="venue-tag">In Review</p>
+
+      <div class="buttons is-centered mt-2">
+        <a class="button is-light" href="#" disabled>
+          <span class="icon"><i class="fas fa-file-alt"></i></span>
+          <span>arXiv</span>
+        </a>
+        <a class="button is-light" href="#" disabled>
+          <span class="icon"><i class="fab fa-github"></i></span>
+          <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Teaser figure -->
+  <section class="section pt-0 pb-4">
+    <div class="main-container">
+      <figure class="image">
+        <img src="../../images/publications/invariant_sebo_review.png" alt="RepreSeg teaser figure">
+      </figure>
+      <p class="figure-caption">
+        <strong>Figure 1.</strong>
+        (Left) RepreSeg code overview. (Right) Probabilistic graphical model motivating our approach.
+      </p>
+    </div>
+  </section>
+
+  <hr class="section-divider" style="max-width:900px; margin-left:auto; margin-right:auto;">
+
+  <!-- Abstract -->
+  <section class="section pt-4 pb-4">
+    <div class="main-container">
+      <h2 class="title is-4">Abstract</h2>
+      <p class="abstract-text">
+        We present <span class="method-name">RepreSeg</span>, a simple and theoretically-grounded approach for domain
+        generalization in 3D biomedical image segmentation. Modern segmentation models degrade sharply under shifts in
+        modality, disease severity, clinical sites, and other factors, creating brittle models that limit reliable
+        deployment. Existing domain generalization methods rely on extreme augmentations, mixing domain statistics, or
+        architectural redesigns, yet incur significant implementation overhead and yield inconsistent performance across
+        biomedical settings. <span class="method-name">RepreSeg</span> instead proposes a principled learning strategy
+        with minimal overhead that leverages both source-domain image intensities and domain-stable foundation model
+        representations to train robust segmentation models. As a result,
+        <span class="method-name">RepreSeg</span> achieves strong gains in both fully supervised and few-shot
+        segmentation across a broad range of shifts in biomedical studies. Unlike prior approaches,
+        <span class="method-name">RepreSeg</span> is architecture- and loss-agnostic, compatible with standard
+        augmentation pipelines, computationally lightweight, and tackles arbitrary anatomical regions. Our
+        implementation is publicly available.
+      </p>
+    </div>
+  </section>
+
+  <hr class="section-divider" style="max-width:900px; margin-left:auto; margin-right:auto;">
+
+  <!-- Method -->
+  <section class="section pt-4 pb-4">
+    <div class="main-container">
+      <h2 class="title is-4">Method</h2>
+      <div class="result-placeholder">
+        Method figure / overview coming soon.
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" style="max-width:900px; margin-left:auto; margin-right:auto;">
+
+  <!-- Results -->
+  <section class="section pt-4 pb-4">
+    <div class="main-container">
+      <h2 class="title is-4">Results</h2>
+      <div class="result-placeholder">
+        Quantitative results table coming soon.
+      </div>
+      <div class="result-placeholder mt-4">
+        Qualitative comparisons coming soon.
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" style="max-width:900px; margin-left:auto; margin-right:auto;">
+
+  <!-- BibTeX -->
+  <section class="section pt-4 pb-5">
+    <div class="main-container">
+      <h2 class="title is-4">BibTeX</h2>
+      <div class="bibtex-box">@article{diaz2025repreSeg,
+  title     = {Why Invariance Alone is Not Enough for Medical Domain
+               Generalization (and How to Fix It)},
+  author    = {Diaz, Sebastian and Golland, Polina and
+               Adalsteinsson, Elfar and Dey, Neel},
+  journal   = {arXiv},
+  year      = {2025}
+}</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <section class="section pt-2 pb-5">
+    <div class="main-container has-text-centered">
+      <p style="font-size:0.85rem; color:#aaa;">
+        Design inspired by <a href="http://horwitz.ai" target="_blank" rel="noopener noreferrer" style="color:#aaa;">horwitz.ai</a>.
+      </p>
+    </div>
+  </section>
+
+</body>
+
+</html>

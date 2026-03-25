@@ -7,6 +7,7 @@ const publicationsData = [
     authors: "<strong>Sebo Diaz</strong>, Polina Golland, Elfar Adalsteinsson, Neel Dey",
     description: 'Invariance is a common inductive bias for domain generalization. However, we show that it can lead to sub-optimal performance. We propose a simple and theoretically grounded intervention that exploits invariance and domain-specific information which achieves high-sample efficiency and competitive performance.',
     buttons: [
+      { text: 'Project Page', link: './projects/repreSeg/' },
       { text: 'arXiv', link: 'google.com', disabled: true },
       { text: 'GitHub', link: 'google.com', disabled: true }
     ]
