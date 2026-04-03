@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LaTeX Demo — Sebo Diaz</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../../images/favicons/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="../../images/favicons/favicon.svg" />
+  <link rel="shortcut icon" href="../../images/favicons/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../images/favicons/apple-touch-icon.png" />
+  <link rel="stylesheet" href="../../styles.css">
+
+  <!-- Syntax highlighting (Pygments/minted-style) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+
+  <!-- MathJax v3 for LaTeX rendering -->
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        packages: {'[+]': ['ams']},
+        tags: 'ams',           // auto-number equations with \label/\ref
+        macros: {
+          R: '\\mathbb{R}',
+          E: '\\mathbb{E}',
+          N: '\\mathbb{N}',
+          Z: '\\mathbb{Z}',
+          norm: ['\\left\\lVert #1 \\right\\rVert', 1],
+          abs:  ['\\left\\lvert #1 \\right\\rvert', 1],
+          inner: ['\\langle #1,\\, #2 \\rangle', 2],
+        }
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
+
+  <style>
+    /* ---------- layout ---------- */
+    .note-body {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 1rem;
+      line-height: 1.85;
+      color: #2d2d2d;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .note-title {
+      font-family: 'Merriweather', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+
+    .note-meta {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 2rem;
+    }
+
+    .note-tag {
+      font-size: 0.75rem;
+      background: #f0f0f0;
+      border-radius: 4px;
+      padding: 1px 7px;
+      color: #555;
+      margin-right: 4px;
+    }
+
+    /* ---------- headings ---------- */
+    .note-body h2 {
+      font-family: 'Merriweather', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 0.3rem;
+    }
+
+    .note-body h3 {
+      font-family: 'Merriweather', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-top: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ---------- body text ---------- */
+    .note-body p {
+      margin-bottom: 1.25rem;
+    }
+
+    .note-body a {
+      color: #3273dc;
+      text-decoration: none;
+    }
+    .note-body a:hover {
+      text-decoration: underline;
+    }
+
+    .note-body ul, .note-body ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ---------- math display ---------- */
+    .note-body .MJX-TEX {
+      font-size: 1.05em;
+    }
+
+    /* ---------- code — minted / Pygments style ---------- */
+
+    /* Pygments "default" token colors */
+    .hljs            { background: #f8f8f8; color: #333; }
+    .hljs-keyword,
+    .hljs-built_in   { color: #008000; font-weight: bold; }
+    .hljs-string,
+    .hljs-doctag     { color: #ba2121; }
+    .hljs-comment    { color: #408080; font-style: italic; }
+    .hljs-number,
+    .hljs-literal    { color: #666666; }
+    .hljs-operator   { color: #666666; }
+    .hljs-meta       { color: #aa22ff; font-weight: bold; } /* decorators */
+    .hljs-title.function_,
+    .hljs-title.class_ { color: #000080; font-weight: bold; }
+    .hljs-variable,
+    .hljs-params     { color: #333; }
+
+    /* Outer block */
+    .note-body pre {
+      background: #f8f8f8;
+      border-radius: 4px;
+      padding: 0;
+      overflow-x: auto;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      border: 1px solid #d8d8d8;
+      font-family: 'Inconsolata', 'Fira Mono', 'Courier New', monospace;
+    }
+
+    /* highlight.js wraps output in a table when line numbers are on */
+    .note-body pre code.hljs {
+      padding: 0;
+      background: transparent;
+    }
+
+    table.hljs-ln {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    /* Gutter (line numbers) */
+    td.hljs-ln-numbers {
+      text-align: right;
+      padding: 0 0.75rem;
+      color: #aaa;
+      background: #efefef;
+      border-right: 1px solid #d0d0d0;
+      user-select: none;
+      vertical-align: top;
+      min-width: 2.2em;
+    }
+
+    /* Code column */
+    td.hljs-ln-code {
+      padding: 0 0 0 1rem;
+    }
+
+    /* First/last row rounding */
+    tr:first-child td.hljs-ln-numbers { border-radius: 3px 0 0 0; padding-top: 0.7rem; }
+    tr:last-child  td.hljs-ln-numbers { border-radius: 0 0 0 3px; padding-bottom: 0.7rem; }
+    tr:first-child td.hljs-ln-code    { padding-top: 0.7rem; }
+    tr:last-child  td.hljs-ln-code    { padding-bottom: 0.7rem; }
+
+    /* Inline code */
+    .note-body code:not(pre code) {
+      background: #f0f0f0;
+      border-radius: 3px;
+      padding: 1px 5px;
+      font-size: 0.875em;
+      color: #c0392b;
+      font-family: 'Inconsolata', 'Fira Mono', monospace;
+    }
+
+    /* ---------- callout / remark box ---------- */
+    .callout {
+      border-left: 4px solid #b5b5b5;
+      background: #fafafa;
+      padding: 0.9rem 1.2rem;
+      margin: 1.5rem 0;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.95rem;
+    }
+
+    .callout.definition { border-left-color: #3273dc; }
+    .callout.theorem    { border-left-color: #23d160; }
+    .callout.remark     { border-left-color: #ffdd57; }
+    .callout.warning    { border-left-color: #ff3860; }
+
+    .callout-label {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+      color: #555;
+    }
+
+    /* ---------- figures ---------- */
+    .note-figure {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    .note-figure img {
+      max-width: 100%;
+      border-radius: 6px;
+    }
+    .note-figure figcaption {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.85rem;
+      color: #777;
+      margin-top: 0.5rem;
+    }
+
+    /* ---------- back button spacing ---------- */
+    .back-nav {
+      margin-bottom: 2.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="section">
+    <div class="main-container">
+
+      <div class="back-nav">
+        <a href="../" class="button is-light is-small">
+          <span class="icon"><i class="fas fa-arrow-left"></i></span>
+          <span>All Notes</span>
+        </a>
+      </div>
+
+      <div class="note-body">
+
+        <h1 class="note-title">LaTeX Demo &mdash; Equations &amp; Formatting</h1>
+        <div class="note-meta">
+          April 2026
+          &nbsp;&middot;&nbsp;
+          <span class="note-tag">example</span>
+          <span class="note-tag">LaTeX</span>
+        </div>
+
+        <p>
+          This note demonstrates how equations, code blocks, and callout boxes look.
+          Copy this file as a starting point for any new note.
+          Math is rendered via <a href="https://www.mathjax.org/" target="_blank">MathJax&nbsp;v3</a>,
+          so you can write standard LaTeX inside.
+        </p>
+        <h2>1. Inline and Display Math</h2>
+
+        <p>
+          Inline: the Gaussian distribution is $p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$.
+          You can also use custom macros: the norm $\norm{v}$ and the inner product $\inner{u}{v}$.
+        </p>
+
+        <p>Display mode centers the equation and gives it more breathing room:</p>
+
+        $$
+          \mathcal{L}(\theta) = -\sum_{i=1}^{N} \log p_\theta(x_i)
+        $$
+
+        <p>
+          
+        </p>
+
+        <h2>2. Numbered &amp; Labeled Equations</h2>
+
+        <p>
+          Equations are auto-numbered when you use <code>\begin{equation}</code>.
+          Reference them with anywhere in the note.
+        </p>
+
+        \begin{equation}
+          \label{eq:bayes}
+          p(\theta \mid x) = \frac{p(x \mid \theta)\, p(\theta)}{p(x)}
+        \end{equation}
+
+        <p>
+          Bayes' theorem \eqref{eq:bayes} is the foundation of probabilistic inference.
+        </p>
+
+        <!-- ============================================================ -->
+        <h2>3. Aligned Systems</h2>
+
+        <p>Use <code>align</code> to line up multi-line derivations on a symbol (typically <code>=</code>):</p>
+
+        \begin{align}
+          \nabla_\theta \mathcal{L}
+            &= -\sum_{i=1}^{N} \nabla_\theta \log p_\theta(x_i) \\
+            &= -\sum_{i=1}^{N} \frac{\nabla_\theta p_\theta(x_i)}{p_\theta(x_i)} \\
+            &= -N\, \E_{x \sim p_\theta}\!\left[\nabla_\theta \log p_\theta(x)\right].
+        \end{align}
+
+        <!-- ============================================================ -->
+        <h2>4. Matrices and Linear Algebra</h2>
+
+        $$
+          A = \begin{pmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{pmatrix},
+          \qquad
+          \det(A) = a_{11}a_{22} - a_{12}a_{21}.
+        $$
+
+        <p>The singular value decomposition:</p>
+
+        \begin{equation}
+          X = U \Sigma V^\top, \qquad U \in \R^{m \times r},\; \Sigma \in \R^{r \times r},\; V \in \R^{n \times r}.
+        \end{equation}
+
+        <!-- ============================================================ -->
+        <h2>5. Callout Boxes</h2>
+
+        <div class="callout definition">
+          <div class="callout-label">Definition</div>
+          A function $f: \R^n \to \R$ is <em>convex</em> if for all $x, y \in \R^n$ and $\lambda \in [0,1]$,
+          $$
+            f(\lambda x + (1-\lambda)y) \leq \lambda f(x) + (1-\lambda)f(y).
+          $$
+        </div>
+
+        <div class="callout theorem">
+          <div class="callout-label">Theorem (Jensen's Inequality)</div>
+          If $f$ is convex and $X$ is a random variable, then
+          $f(\E[X]) \leq \E[f(X)].$
+        </div>
+
+        <div class="callout remark">
+          <div class="callout-label">Remark</div>
+          Equality holds iff $X$ is constant a.s. or $f$ is affine.
+        </div>
+
+        <div class="callout warning">
+          <div class="callout-label">Warning</div>
+          Do not confuse the <em>empirical</em> risk $\hat{\mathcal{L}}_N$ with the
+          <em>population</em> risk $\mathcal{L}$; the gap matters when $N$ is small.
+        </div>
+
+        <!-- ============================================================ -->
+        <h2>6. Code Blocks</h2>
+
+        <p>Use fenced code blocks for algorithms and snippets (highlighted via highlight.js):</p>
+
+        <pre><code class="language-python">import numpy as np
+
+def gradient_descent(f_grad, x0, lr=1e-3, steps=1000):
+    """Vanilla gradient descent."""
+    x = x0.copy()
+    for _ in range(steps):
+        x -= lr * f_grad(x)
+    return x
+</code></pre>
+
+        <pre><code class="language-python"># Sampling from a multivariate Gaussian
+mu = np.zeros(2)
+Sigma = np.array([[1.0, 0.8],
+                  [0.8, 1.0]])
+samples = np.random.multivariate_normal(mu, Sigma, size=1000)
+</code></pre>
+
+        <!-- ============================================================ -->
+        <h2>7. Custom Macros</h2>
+
+        <p>
+          The MathJax config at the top of this file defines several handy macros.
+          Add your own in the <code>macros</code> block of the <code>MathJax</code> config:
+        </p>
+
+        <ul>
+          <li><code>\R</code> &rarr; $\R$ &nbsp;(reals)</li>
+          <li><code>\E</code> &rarr; $\E$ &nbsp;(expectation)</li>
+          <li><code>\norm{v}</code> &rarr; $\norm{v}$</li>
+          <li><code>\abs{x}</code> &rarr; $\abs{x}$</li>
+          <li><code>\inner{u}{v}</code> &rarr; $\inner{u}{v}$</li>
+        </ul>
+
+        <hr>
+        <p style="font-size:0.9rem; color:#888;">
+          To add a new note: duplicate this folder, update the content, and add a card to
+          <a href="../">notes/index.html</a>.
+        </p>
+
+      </div><!-- end .note-body -->
+    </div><!-- end .main-container -->
+  </section>
+
+  <script>
+    hljs.highlightAll();
+    hljs.initLineNumbersOnLoad();
+  </script>
+</body>
+
+</html>

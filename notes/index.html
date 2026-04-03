@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes — Sebo Diaz</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../images/favicons/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="../images/favicons/favicon.svg" />
+  <link rel="shortcut icon" href="../images/favicons/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/favicons/apple-touch-icon.png" />
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .note-card {
+      border-left: 3px solid #b5b5b5;
+      padding-left: 1.25rem;
+      margin-bottom: 2rem;
+      transition: border-color 0.2s ease;
+    }
+    .note-card:hover {
+      border-left-color: #7a7a7a;
+    }
+    .note-card .note-title {
+      font-family: 'Merriweather', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #363636;
+      text-decoration: none;
+    }
+    .note-card .note-title:hover {
+      color: #000;
+      text-decoration: underline;
+    }
+    .note-meta {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 0.4rem;
+    }
+    .note-tag {
+      font-size: 0.75rem;
+      background: #f0f0f0;
+      border-radius: 4px;
+      padding: 1px 7px;
+      color: #555;
+      margin-right: 4px;
+    }
+    .note-excerpt {
+      font-size: 0.95rem;
+      color: #555;
+      margin-top: 0.3rem;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="section">
+    <div class="main-container">
+      <div class="mb-5">
+        <a href="../" class="button is-light is-small">
+          <span class="icon"><i class="fas fa-arrow-left"></i></span>
+          <span>Back to Home</span>
+        </a>
+      </div>
+
+      <h1 class="title is-3" style="font-family: 'Merriweather', serif;">Notes</h1>
+      <p class="subtitle is-6" style="color: #888; margin-top: -0.75rem;">
+        Informal write-ups on math, methods, and ideas.
+      </p>
+
+      <hr>
+
+      <div id="notes-list">
+        <!-- Notes are listed below. Add new entries at the top. -->
+
+        <div class="note-card">
+          <div class="note-meta">
+            <span>March 2026</span>
+            &nbsp;·&nbsp;
+            <span class="note-tag">example</span>
+            <span class="note-tag">LaTeX</span>
+          </div>
+          <a class="note-title" href="./latex-demo/">LaTeX Demo — Equations &amp; Formatting</a>
+          <p class="note-excerpt">
+            A quick tour of supported math environments: inline equations, display equations,
+            aligned systems, and more. Useful as a template for new notes.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section pt-0">
+    <div class="main-container has-text-centered">
+      <p style="font-size: 0.85rem; color: #aaa;">
+        Design heavily inspired by <a href="http://horwitz.ai" target="_blank" rel="noopener noreferrer">http://horwitz.ai</a>.
+      </p>
+    </div>
+  </section>
+</body>
+
+</html>

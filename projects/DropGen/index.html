@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RepreSeg</title>
+  <title>DropGen</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
@@ -131,11 +131,11 @@
     <div class="main-container">
       
       <figure class="image">
-        <embed src="../../images/publications/invariant_sebo_review.pdf" type="application/pdf" width="100%" height="600px" alt="RepreSeg teaser figure">
+        <embed src="../../images/publications/invariant_sebo_review.pdf" type="application/pdf" width="100%" height="600px" alt="DropGen teaser figure">
       </figure>
       <p class="figure-caption">
         <strong>Figure 1.</strong>
-        (Left) RepreSeg code overview. (Right) Probabilistic graphical model motivating our approach.
+        (Left) DropGen code overview. (Right) Probabilistic graphical model motivating our approach.
       </p>
     </div>
   </section>
@@ -147,17 +147,17 @@
     <div class="main-container">
       <h2 class="title is-4">Abstract</h2>
       <p class="abstract-text">
-        We present <span class="method-name">RepreSeg</span>, a simple and theoretically-grounded approach for domain
+        We present <span class="method-name">DropGen</span>, a simple and theoretically-grounded approach for domain
         generalization in 3D biomedical image segmentation. Modern segmentation models degrade sharply under shifts in
         modality, disease severity, clinical sites, and other factors, creating brittle models that limit reliable
         deployment. Existing domain generalization methods rely on extreme augmentations, mixing domain statistics, or
         architectural redesigns, yet incur significant implementation overhead and yield inconsistent performance across
-        biomedical settings. <span class="method-name">RepreSeg</span> instead proposes a principled learning strategy
+        biomedical settings. <span class="method-name">DropGen</span> instead proposes a principled learning strategy
         with minimal overhead that leverages both source-domain image intensities and domain-stable foundation model
         representations to train robust segmentation models. As a result,
-        <span class="method-name">RepreSeg</span> achieves strong gains in both fully supervised and few-shot
+        <span class="method-name">DropGen</span> achieves strong gains in both fully supervised and few-shot
         segmentation across a broad range of shifts in biomedical studies. Unlike prior approaches,
-        <span class="method-name">RepreSeg</span> is architecture- and loss-agnostic, compatible with standard
+        <span class="method-name">DropGen</span> is architecture- and loss-agnostic, compatible with standard
         augmentation pipelines, computationally lightweight, and tackles arbitrary anatomical regions. Our
         implementation is publicly available.
       </p>
@@ -197,7 +197,7 @@
   <section class="section pt-4 pb-5">
     <div class="main-container">
       <h2 class="title is-4">BibTeX</h2>
-      <div class="bibtex-box">@article{diaz2025repreSeg,
+      <div class="bibtex-box">@article{diaz2025DropGen,
   title     = {Why Invariance Alone is Not Enough for Medical Domain
                Generalization (and How to Fix It)},
   author    = {Diaz, Sebastian and Golland, Polina and

@@ -1,13 +1,13 @@
 const publicationsData = [
   {
     imageSrc: './images/publications/invariant_sebo_review.png',
-    caption: '(Left) RepreSeg code and (Right) PGM that motivates our method.',
-    title: 'Why Invariannce Alone is Not Enough for Medical Domain Generalization (and How to Fix It)',
+    caption: '(Left) DropGen code and (Right) PGM that motivates our method.',
+    title: 'Why Invariance is Not Enough for Biomedical Domain Generalization and How to Fix It',
     status: 'In Review.',
     authors: "<strong>Sebo Diaz</strong>, Polina Golland, Elfar Adalsteinsson, Neel Dey",
-    description: 'Invariance is a common inductive bias for domain generalization. However, we show that it can lead to sub-optimal performance. We propose a simple and theoretically grounded intervention that exploits invariance and domain-specific information which achieves high-sample efficiency and competitive performance.',
+    description: 'Invariance is a common inductive bias for domain generalization. However, we show that it can lead to sub-optimal performance. We propose a simple and theoretically grounded intervention, named DropGen, that exploits invariance and domain-specific information achieving high-sample efficiency and competitive performance.',
     buttons: [
-      { text: 'Project Page', link: './projects/repreSeg/' },
+      { text: 'Project Page', link: './projects/DropGen/' },
       { text: 'arXiv', link: 'google.com', disabled: true },
       { text: 'GitHub', link: 'google.com', disabled: true }
     ]
