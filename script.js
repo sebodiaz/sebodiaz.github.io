@@ -8,8 +8,8 @@ const publicationsData = [
     description: 'Invariance is a common inductive bias for domain generalization. However, we show that it can lead to sub-optimal performance. We propose a simple and theoretically grounded intervention, named DropGen, that exploits invariance and domain-specific information achieving high-sample efficiency and competitive performance.',
     buttons: [
       { text: 'Project Page', link: './projects/DropGen/' },
-      { text: 'arXiv', link: 'google.com', disabled: true },
-      { text: 'GitHub', link: 'google.com', disabled: true }
+      { text: 'arXiv', link: 'https://arxiv.org/abs/2604.02564' },
+      { text: 'GitHub', link: 'https://github.com/sebodiaz/DropGen' }
     ]
   },
 
