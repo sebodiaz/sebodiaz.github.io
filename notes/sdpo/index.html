@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Self-Distillation Summary — Sebo Diaz</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../../images/favicons/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="../../images/favicons/favicon.svg" />
+  <link rel="shortcut icon" href="../../images/favicons/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../images/favicons/apple-touch-icon.png" />
+  <link rel="stylesheet" href="../../styles.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        packages: {'[+]': ['ams']},
+        tags: 'ams',
+        macros: {
+          R: '\\mathbb{R}',
+          E: '\\mathbb{E}',
+          N: '\\mathbb{N}',
+          Z: '\\mathbb{Z}',
+          norm: ['\\left\\lVert #1 \\right\\rVert', 1],
+          abs:  ['\\left\\lvert #1 \\right\\rvert', 1],
+          inner: ['\\langle #1,\\, #2 \\rangle', 2],
+        }
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
+
+  <style>
+    .note-body {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 1rem;
+      line-height: 1.85;
+      color: #2d2d2d;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .note-title {
+      font-family: 'Merriweather', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+
+    .note-meta {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 2rem;
+    }
+
+    .note-tag {
+      font-size: 0.75rem;
+      background: #f0f0f0;
+      border-radius: 4px;
+      padding: 1px 7px;
+      color: #555;
+      margin-right: 4px;
+    }
+
+    .note-body h2 {
+      font-family: 'Merriweather', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 0.3rem;
+    }
+
+    .note-body h3 {
+      font-family: 'Merriweather', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-top: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .note-body p {
+      margin-bottom: 1.25rem;
+    }
+
+    .note-body a {
+      color: #3273dc;
+      text-decoration: none;
+    }
+    .note-body a:hover {
+      text-decoration: underline;
+    }
+
+    .note-body ul, .note-body ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .note-body .MJX-TEX {
+      font-size: 1.05em;
+    }
+
+    .hljs            { background: #f8f8f8; color: #333; }
+    .hljs-keyword,
+    .hljs-built_in   { color: #008000; font-weight: bold; }
+    .hljs-string,
+    .hljs-doctag     { color: #ba2121; }
+    .hljs-comment    { color: #408080; font-style: italic; }
+    .hljs-number,
+    .hljs-literal    { color: #666666; }
+    .hljs-operator   { color: #666666; }
+    .hljs-meta       { color: #aa22ff; font-weight: bold; }
+    .hljs-title.function_,
+    .hljs-title.class_ { color: #000080; font-weight: bold; }
+    .hljs-variable,
+    .hljs-params     { color: #333; }
+
+    .note-body pre {
+      background: #f8f8f8;
+      border-radius: 4px;
+      padding: 0;
+      overflow-x: auto;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      border: 1px solid #d8d8d8;
+      font-family: 'Inconsolata', 'Fira Mono', 'Courier New', monospace;
+    }
+
+    .note-body pre code.hljs {
+      padding: 0.7rem 1rem;
+      background: transparent;
+      display: block;
+    }
+
+    table.hljs-ln {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    td.hljs-ln-numbers {
+      text-align: right;
+      padding: 0 0.75rem;
+      color: #aaa;
+      background: #efefef;
+      border-right: 1px solid #d0d0d0;
+      user-select: none;
+      vertical-align: top;
+      min-width: 2.2em;
+    }
+
+    td.hljs-ln-code {
+      padding: 0 0 0 1rem;
+    }
+
+    tr:first-child td.hljs-ln-numbers { border-radius: 3px 0 0 0; padding-top: 0.7rem; }
+    tr:last-child  td.hljs-ln-numbers { border-radius: 0 0 0 3px; padding-bottom: 0.7rem; }
+    tr:first-child td.hljs-ln-code    { padding-top: 0.7rem; }
+    tr:last-child  td.hljs-ln-code    { padding-bottom: 0.7rem; }
+
+    .note-body code:not(pre code) {
+      background: #f0f0f0;
+      border-radius: 3px;
+      padding: 1px 5px;
+      font-size: 0.875em;
+      color: #c0392b;
+      font-family: 'Inconsolata', 'Fira Mono', monospace;
+    }
+
+    .callout {
+      border-left: 4px solid #b5b5b5;
+      background: #fafafa;
+      padding: 0.9rem 1.2rem;
+      margin: 1.5rem 0;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.95rem;
+    }
+
+    .callout.definition { border-left-color: #3273dc; }
+    .callout.theorem    { border-left-color: #23d160; }
+    .callout.remark     { border-left-color: #ffdd57; }
+    .callout.warning    { border-left-color: #ff3860; }
+
+    .callout-label {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+      color: #555;
+    }
+
+    .note-figure {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    .note-figure img {
+      max-width: 100%;
+      border-radius: 6px;
+    }
+    .note-figure figcaption {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.85rem;
+      color: #777;
+      margin-top: 0.5rem;
+    }
+
+    .back-nav {
+      margin-bottom: 2.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="section">
+    <div class="main-container">
+
+      <div class="back-nav">
+        <a href="../" class="button is-light is-small">
+          <span class="icon"><i class="fas fa-arrow-left"></i></span>
+          <span>All Notes</span>
+        </a>
+      </div>
+
+      <div class="note-body">
+
+        <h1 class="note-title">Self-Distillation Summary</h1>
+        <div class="note-meta">
+          May 5th, 2026
+          &nbsp;&middot;&nbsp;
+          <span class="note-tag">distillation</span>
+          <span class="note-tag">rl</span>
+          <span class="note-tag">generalization</span>
+        </div>
+
+        <p>Recently, I have been reading a lot of work in self-distillation policy optimization (SDPO), a dense-credit objective that distills the knowledge of a <em>privileged</em> teacher into the student. As given by its namesake, the teacher is the student with the only caveat that it is provided <em>additional</em> information. The job of the teacher is to effectively &quot;guide&quot; the student towards completing a task.</p>
+<h2>Formal setup</h2>
+<p>Let \( \pi_{\theta} \) be a language model with parameters \( \theta \), defining a distriution over next tokens \( \pi_{\theta}(x_t \mid x_{\lt t}) \). In OPSD, the <em>teacher</em> is the same model conditioned on <em>privileged</em> information, or context, \( c \). For example, ground-truth solutions traces (SDPO with rich feedback), explicit error feedback (SDPO with rich environment feedback), or additional hints/instructions.</p>
+<p>Define the per-position student and teacher distributions:</p>
+<p>\[
+p_{t}^{S} = \pi_{\theta}(\cdot \mid x_{\lt t}), \quad p_{t}^{T} = \pi_{\theta}(\cdot \mid x_{\lt t}, c)
+\]</p>
+<p>The student weights are updated to minimize the KL-based distillation loss. I focus on the SDPO formulation, which interpolates between the forward and reverse KL via a coefficient \( \alpha \) (<code>alpha</code> in their codebase, where \(\alpha = 0\), is forward KL, \(\alpha = 1\) is reverse KL, and \(\alpha = 0.5\) is JSD):
+\[
+\mathcal{L}<em>{SDPO} = \mathbb{E}</em>{t} \big[ (1 - \alpha) \cdot D_{KL}(p^{T}<em>{t} || p</em>{t}^{S}) + \alpha \cdot D_{KL}(p^{S}<em>{t} || p</em>{t}^{T}) \big]
+\]</p>
+<p>The teacher distribution is held approximately fixed during a step (via EMA or trust-region regularization in practice). Based on \( \mathcal{L}(\theta) \) above, we can see that there is a <em>reverse</em> and <em>forward</em> KL term. The <em>forward</em> KL is <strong>mass-covering</strong> and forces the student to maintain mass everywhere the teacher does. The <em>reverse</em> KL is <strong>mode-seeking</strong> and penalizes the student for placing the mass where the teacher has none, but does <em>not</em> penalize the student for placing no mass where the teacher has placed.</p>
+<p>By default, SDPO uses \( \alpha = 0.5 \) (JSD). Empirically, the dominant compressive force comes from the reverse-KL component: the student concentrates mass on continuations the teacher prefers under the privileged context, abandoning continuations the unconditioned student previously hedged between.</p>
+<p>We can demonstrate these repressive forces with standard plots.</p>
+<pre><code class="language-python"># libraries
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import norm
+
+# grid
+x = np.linspace(-6, 6, 1000)
+
+def p_teacher(x):
+  &quot;&quot;&quot; teacher: mixture of two gaussians &quot;&quot;&quot;
+  return 0.5*norm.pdf(x, -2, 0.8) + 0.5*norm.pdf(x, 2, 0.8)
+
+def p_student(x, mu):
+  &quot;&quot;&quot; student: single gaussian &quot;&quot;&quot;
+  return norm.pdf(x, mu, 1.0)
+
+# KL computations (numerical)
+def kl_ps_pt(mu):
+    ps = p_student(x, mu)
+    pt = p_teacher(x)
+    eps = 1e-10
+    return np.sum(ps * (np.log(ps + eps) - np.log(pt + eps))) * (x[1] - x[0])
+
+def kl_pt_ps(mu):
+    ps = p_student(x, mu)
+    pt = p_teacher(x)
+    eps = 1e-10
+    return np.sum(pt * (np.log(pt + eps) - np.log(ps + eps))) * (x[1] - x[0])
+
+# Sweep over means
+mus = np.linspace(-4, 4, 200)
+reverse_kl = [kl_ps_pt(mu) for mu in mus]
+forward_kl = [kl_pt_ps(mu) for mu in mus]
+
+# Plot KL curves
+plt.figure(figsize=(10, 4))
+plt.plot(mus, reverse_kl, label=&quot;Reverse KL: KL(pS || pT)&quot;)
+plt.plot(mus, forward_kl, label=&quot;Forward KL: KL(pT || pS)&quot;)
+plt.legend()
+plt.xlabel(&quot;Student mean (mu)&quot;)
+plt.ylabel(&quot;KL divergence&quot;)
+plt.title(&quot;Forward vs Reverse KL behavior&quot;)
+plt.show()
+</code></pre>
+<p>Based on this intuiton, we can define a <strong>prunability</strong> score at position \( t \):
+\[
+\rho_{t} = H(p_{t}^{S}) \cdot D_{KL}(p_{t}^{T} || p_{t}^{S})
+\]
+Positions where the student is confident (low entropy) have little redundant mass to reallocate, so they are not prunable. Positions where the student already matches the teacher (low forward KL) also survive. High prunability arises only where the student is both uncertain (high entropy) and fails to cover teacher-supported outcomes (high forward KL), indicating compressible structure.</p>
+<h2>Connection to Mutual Information</h2>
+<p>Independently, recent work (<em>Demystifying Reasoning Dynamics with Mutual Information 2025</em>) identifies <strong>information peaks</strong> in reasoning trajectories. These are positions where token-level mutual information with the final answer spikes. These positions are dominated by discourse markers (&quot;So&quot;, &quot;Hmm&quot;, &quot;Wait&quot;). Suppressing them degrades reasoning: suppressing random non-peak tokens does not.</p>
+<p>While mutual information and prunability capture distinct properties—predictiveness of the final answer versus local uncertainty and mismatch—they may overlap in regimes where critical reasoning steps are also unstable for the student. In such cases, self-distillation may preferentially compress parts of the trajectory that are disproportionately important for accurate reasoning. This provides a potential mechanism for why distillation shortens reasoning traces and can degrade out-of-distribution generalization: it removes or smooths tokens that, while not always locally stable, play an outsized role in structuring the computation leading to the final answer.</p>
+<div class="callout hypothesis">
+<div class="callout-label">Hypothesis</div>
+We hypothesize that tokens with high mutual information and high prunability—i.e., tokens that are both globally predictive of the answer and locally unstable under the student—form a small but critical subset of reasoning steps. These tokens are disproportionately affected by self-distillation, leading to compressed but less robust reasoning trajectories.
+</div>
+<p>TMEP asda This note is the Markdown counterpart to the LaTeX demo. Copy this file as a starting point for any new note. Math is rendered via <a href="https://www.mathjax.org/">MathJax v3</a>, so standard LaTeX works inside.</p>
+<p>A note on math delimiters: prefer <code>\(...\)</code> for inline and <code>\[...\]</code> for display, since Markdown's <code>_</code> and <code>*</code> can collide with subscripts/multiplication inside <code>$...$</code>. Both work, but the backslash forms are safer.</p>
+<h2>1. Inline and Display Math</h2>
+<p>Inline: the Gaussian distribution is \(p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}\). Custom macros work too: the norm \(\norm{v}\) and the inner product \(\inner{u}{v}\).</p>
+<p>Display mode centers the equation:</p>
+<p>\[
+\mathcal{L}(\theta) = -\sum_{i=1}^{N} \log p_\theta(x_i)
+\]</p>
+<h2>2. Numbered &amp; Labeled Equations</h2>
+<p>Equations auto-number when you use <code>\begin{equation}</code>:</p>
+<p>\begin{equation}
+\label{eq:bayes}
+p(\theta \mid x) = \frac{p(x \mid \theta)\, p(\theta)}{p(x)}
+\end{equation}</p>
+<p>Bayes' theorem \eqref{eq:bayes} is the foundation of probabilistic inference.</p>
+<h2>3. Aligned Systems</h2>
+<p>\begin{align}
+\nabla_\theta \mathcal{L}
+&amp;= -\sum_{i=1}^{N} \nabla_\theta \log p_\theta(x_i) \\
+&amp;= -\sum_{i=1}^{N} \frac{\nabla_\theta p_\theta(x_i)}{p_\theta(x_i)} \\
+&amp;= -N\, \E_{x \sim p_\theta}\!\left[\nabla_\theta \log p_\theta(x)\right].
+\end{align}</p>
+<h2>4. Matrices</h2>
+<p>\[
+A = \begin{pmatrix} a_{11} &amp; a_{12} \\ a_{21} &amp; a_{22} \end{pmatrix},
+\qquad
+\det(A) = a_{11}a_{22} - a_{12}a_{21}.
+\]</p>
+<h2>5. Callout Boxes</h2>
+<p>Callouts are plain HTML — Markdown lets you mix raw HTML freely:</p>
+<div class="callout definition">
+<div class="callout-label">Definition</div>
+A function \(f: \R^n \to \R\) is <em>convex</em> if for all \(x, y \in \R^n\) and \(\lambda \in [0,1]\),
+\[
+  f(\lambda x + (1-\lambda)y) \leq \lambda f(x) + (1-\lambda)f(y).
+\]
+</div>
+<div class="callout theorem">
+<div class="callout-label">Theorem (Jensen's Inequality)</div>
+If \(f\) is convex and \(X\) is a random variable, then \(f(\E[X]) \leq \E[f(X)]\).
+</div>
+<div class="callout remark">
+<div class="callout-label">Remark</div>
+Equality holds iff \(X\) is constant a.s. or \(f\) is affine.
+</div>
+<div class="callout warning">
+<div class="callout-label">Warning</div>
+Do not confuse the <em>empirical</em> risk \(\hat{\mathcal{L}}_N\) with the <em>population</em> risk \(\mathcal{L}\); the gap matters when \(N\) is small.
+</div>
+<h2>6. Code Blocks</h2>
+<p>Fenced code blocks pick up syntax highlighting from highlight.js:</p>
+<pre><code class="language-python">import numpy as np
+
+def gradient_descent(f_grad, x0, lr=1e-3, steps=1000):
+    &quot;&quot;&quot;Vanilla gradient descent.&quot;&quot;&quot;
+    x = x0.copy()
+    for _ in range(steps):
+        x -= lr * f_grad(x)
+    return x
+</code></pre>
+<pre><code class="language-python">mu = np.zeros(2)
+Sigma = np.array([[1.0, 0.8],
+                  [0.8, 1.0]])
+samples = np.random.multivariate_normal(mu, Sigma, size=1000)
+</code></pre>
+<h2>7. Lists and Inline Code</h2>
+<p>Available macros (defined in the layout's MathJax config):</p>
+<ul>
+<li><code>\R</code> → \(\R\) (reals)</li>
+<li><code>\E</code> → \(\E\) (expectation)</li>
+<li><code>\norm{v}</code> → \(\norm{v}\)</li>
+<li><code>\abs{x}</code> → \(\abs{x}\)</li>
+<li><code>\inner{u}{v}</code> → \(\inner{u}{v}\)</li>
+</ul>
+<hr>
+<p>To add a new note: drop a <code>.md</code> file into <code>notes-src/</code> with frontmatter (<code>layout</code>, <code>title</code>, <code>date</code>, <code>tags</code>), run <code>npm run build</code>, and add a card in <a href="../">notes/index.html</a>.</p>
+
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    hljs.highlightAll();
+    hljs.initLineNumbersOnLoad();
+  </script>
+</body>
+
+</html>
