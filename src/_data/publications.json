@@ -1,0 +1,63 @@
+[
+  {
+    "image": "/images/publications/invariant_sebo_review.png",
+    "caption": "(Left) DropGen code and (Right) PGM that motivates our method.",
+    "title": "Why Invariance is Not Enough for Biomedical Domain Generalization and How to Fix It",
+    "venue": "In Review",
+    "authors": "<strong>Sebo Diaz</strong>, Polina Golland, Elfar Adalsteinsson, Neel Dey",
+    "description": "Invariance is a common inductive bias for domain generalization. However, we show that it can lead to sub-optimal performance. We propose a simple and theoretically grounded intervention, named DropGen, that exploits invariance and domain-specific information achieving high-sample efficiency and competitive performance.",
+    "links": [
+      { "text": "Project Page", "url": "/projects/DropGen/" },
+      { "text": "arXiv", "url": "https://arxiv.org/abs/2604.02564" },
+      { "text": "GitHub", "url": "https://github.com/sebodiaz/DropGen" }
+    ]
+  },
+  {
+    "image": "/images/publications/pose_diaz_review_2025.png",
+    "caption": "Qualtitative results. Pictured are challenging, lower GA subjects. Noticeably, our method significantly improves the estimated pose. PCK = Percentage of Correct Keypoints.",
+    "title": "Robust Fetal Pose Estimation across Gestational Ages via Cross-Population Augmentation",
+    "venue": "MICCAI 2025",
+    "authors": "<strong>Sebo Diaz</strong>, Benjamin Billot, Neel Dey, Molin Zhang, Esra Abaci-Turk, Ellen Grant, Polina Golland, Elfar Adalsteinsson",
+    "description": "Current fetal pose estimation methods fail to generalize across gestational ages (GA). We propose a novel method to capture lower GA subjects using exclusively higher GA subjects. We achieve state-of-the-art performance on a challenging clinical dataset enabling more accurate motion estimation.",
+    "links": [
+      { "text": "MICCAI Publication", "url": "https://papers.miccai.org/miccai-2025/0789-Paper3296.html" },
+      { "text": "arXiv", "url": "https://arxiv.org/abs/2509.12062v1" },
+      { "text": "GitHub", "url": "https://github.com/sebodiaz/cross-population-pose" }
+    ]
+  },
+  {
+    "image": "/images/publications/slfrank_diaz_ismrm_2024.png",
+    "caption": "Images are in-utero fetal brain acquisitions. (Top) Gold standard HASTE (TSE) pulse design image, SAR limits (red) are hit. (Bottom) SLfRank pulse design image. SAR limits are not hit and reduced by 22%.",
+    "title": "Design of Novel RF Pulse for Fetal MRI Refocusing Trains using Rank Factorization (SLfRank) to Reduce SAR and Improve Image Acquisition Efficiency",
+    "venue": "ISMRM 2022",
+    "authors": "<strong>Sebo Diaz</strong>, Yamin Arefeen, Borjan Gagoski, Ellen Grant, Elfar Adalsteinsson",
+    "description": "Relaxed optimization problem enables significant image acceleration. We show <em>22%</em> acceleration compared to industry standard with no tradeoffs. Applications in fetal, but pertains to any turbo spin echo sequence.",
+    "links": [
+      { "text": "ISMRM Publication", "url": "https://archive.ismrm.org/2022/2926.html" }
+    ]
+  },
+  {
+    "image": "/images/publications/bodymodel_liu_miccai_2025.png",
+    "caption": "Body model as applied to Echo Planar Imaging (EPI) sequences. The body model is used to estimate the fetal pose and shape from segmentations and keypoint estimations.",
+    "title": "Fetuses Made Simple: Modeling and Tracking of Fetal Shape and Pose",
+    "venue": "MICCAI 2025",
+    "authors": "Yingcheng Liu, Peiqi Wang, <strong>Sebo Diaz</strong>, Benjamin Billot, Esra Abaci Turk, Ellen Grant, Polina Golland",
+    "description": "Analyzing fetal body motion and shape is paramount in pre-natal diagnostics and monitoring. Existing methods mainly rely on keypoints or volumetric segmentations of the fetal body. Keypoints oversimplify the body structure, while segmentation lacks temporal correspondence. To address these shortcomings, we construct a 3D articulated statistical fetal body model based on the Skinned Multi-Person Linear Model (SMPL).",
+    "links": [
+      { "text": "MICCAI Publication", "url": "https://papers.miccai.org/miccai-2025/0333-Paper4748.html" },
+      { "text": "arXiv", "url": "https://arxiv.org/abs/2506.17858" },
+      { "text": "GitHub", "url": "https://github.com/MedicalVisionGroup/fetal-smpl" }
+    ]
+  },
+  {
+    "image": "/images/publications/stochastic_offset_ismrm_2024.png",
+    "caption": "Stochastic-offset-strategy enhanced RF pulse optimization with auto-differentiation",
+    "title": "Stochastic-offset-strategy enhanced RF pulse optimization with auto-differentiation",
+    "venue": "ISMRM 2024",
+    "authors": "Molin Zhang, Nicholas Arango, <strong>Sebo Diaz</strong>, Jacob White, Elfar Adalsteinsson",
+    "description": "Voxel-wise objective function with auto-differentiation for RF pulse optimization has become prevalent. While benefit from the spatial flexibility of desired pattern, conventional fixed-point representation of a matrix fed into the voxel-wise objective function leads to sub-optimal and undesired resultant profile at courser resolution. We assign random spatial offsets to each point centered at the voxel and show superior performance to fixed-point representations.",
+    "links": [
+      { "text": "ISMRM Publication", "url": "https://submissions.mirasmart.com/ISMRM2024/Itinerary/PresentationDetail.aspx?evdid=5606" }
+    ]
+  }
+]

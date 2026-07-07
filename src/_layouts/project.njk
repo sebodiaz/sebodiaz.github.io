@@ -1,0 +1,38 @@
+---
+layout: base.njk
+math: true
+prose: true
+---
+<article class="article project">
+  <header class="project-header">
+    <p class="crumb"><a href="/projects/">&larr; All projects</a></p>
+    <h1 class="article-title">{{ title | safe }}</h1>
+    {%- if authors %}
+    <p class="project-authors">{{ authors | safe }}</p>
+    {%- endif %}
+    {%- if affiliations %}
+    <p class="project-affiliations">{{ affiliations | safe }}</p>
+    {%- endif %}
+    {%- if venue %}
+    <p><span class="venue-tag">{{ venue }}</span></p>
+    {%- endif %}
+    {%- if links %}
+    <p class="project-links">
+      {%- for link in links %}
+      <a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.text }}&nbsp;&#8599;</a>
+      {%- endfor %}
+    </p>
+    {%- endif %}
+  </header>
+  {%- if hero %}
+  <figure class="project-hero">
+    <img src="{{ hero }}" alt="{{ heroAlt or title }}">
+    {%- if heroCaption %}
+    <figcaption>{{ heroCaption | safe }}</figcaption>
+    {%- endif %}
+  </figure>
+  {%- endif %}
+  <div class="article-body">
+    {{ content | safe }}
+  </div>
+</article>

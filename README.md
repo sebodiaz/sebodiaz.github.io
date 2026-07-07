@@ -1,82 +1,92 @@
-# Sebo Diaz - Personal Portfolio Website
+# Sebo Diaz — Personal Website
 
-This is the repository for my personal academic and professional website..
-
-The website is designed to be clean, responsive, and easy to navigate, built with HTML, CSS (Bulma framework), and vanilla JavaScript. Heavily inspired from 
-
-## Table of Contents
-
--   [Features](#features)
--   [Folder Structure](#folder-structure)
--   [Development](#development)
--   [License](#license)
--   [Acknowledgments](#acknowledgments)
+Repository for my personal academic website, built with [Eleventy](https://www.11ty.dev/).
+Everything is rendered to static HTML at build time — Markdown, LaTeX (KaTeX), and
+syntax highlighting (PrismJS) — so pages ship with no client-side rendering JavaScript.
 
 ## Features
 
-* **Responsive Design:** Adapts to various screen sizes (mobile, tablet, desktop).
-* **Dynamic Publications Section:** Publications are loaded dynamically from a JavaScript array, making it easy to add/update new entries.
-* **Image Lightbox:** Click on publication images to view them in a larger, detailed pop-up.
-* **Professional Links:** Direct links to Email, Twitter, GitHub, LinkedIn, and Resume.
-* **Customizable Highlight Color:** Unique text selection highlight color for a personalized touch.
+* **Fast:** static HTML + one small stylesheet; KaTeX math and Prism code highlighting are rendered at build time.
+* **Blog/notes in Markdown:** drop a `.md` file in `src/notes/`, get a page with full LaTeX support.
+* **Project pages in Markdown:** frontmatter drives the header (authors, venue, links, hero figure); the body is freeform Markdown.
+* **Data-driven homepage:** publications and news live in JSON files, not HTML.
+* **Dark mode:** toggle in the nav, persisted in `localStorage`, defaults to the system preference.
 
 ## Folder Structure
 
-The project is organized into clear, modular directories for easy management.
-
 ```
-├── css/
-│   └── styles.css        # Custom CSS rules and overrides
-├── js/
-│   └── script.js         # All JavaScript logic, including publication data and lightbox functionality
-├── images/
-│   ├── favicons/         # All favicon and site icon files
-│   │   ├── apple-touch-icon.png
-│   │   ├── favicon-96x96.png
-│   │   ├── favicon.ico
-│   │   ├── favicon.svg
-│   │   └── site.webmanifest
-│   ├── profile/          # Profile picture
-│   │   └── headshot.jpg
-│   └── publications/     # Images related to publications
-│       ├── pub_1.png
-│       └── pub_n.png
-├── files/
-│   └── resume.pdf        # Your resume file
-└── index.html            # The main entry point of the website
+├── .eleventy.js            # Eleventy config: KaTeX, Prism, collections, macros
+├── src/                    # ALL source lives here — edit these files
+│   ├── _data/
+│   │   ├── publications.json   # homepage publications list
+│   │   ├── news.json           # homepage news items
+│   │   └── site.json           # name, email, social links
+│   ├── _layouts/
+│   │   ├── base.njk            # HTML shell, nav, footer, theme toggle
+│   │   ├── note.njk            # note pages
+│   │   └── project.njk         # project pages
+│   ├── css/style.css           # the whole site's stylesheet (light + dark themes)
+│   ├── js/site.js              # theme toggle + image lightbox (only JS shipped)
+│   ├── index.njk               # homepage
+│   ├── notes/                  # notes as Markdown (+ the notes index)
+│   └── projects/               # project pages as Markdown (+ the projects index)
+├── images/, files/         # static assets, served as-is
+├── index.html, notes/, projects/, css/, js/   # BUILD OUTPUT — do not edit by hand
+└── package.json
 ```
 
----
+The build writes into the repository root so GitHub Pages serves it directly:
+commit both `src/` and the generated output.
 
 ## Development
 
-### Adding/Updating Publications
+```bash
+npm install
+npm run build     # one-off build
+npm run watch     # dev server with live reload at http://localhost:8080
+```
 
-To add a new publication or modify an existing one:
+### Adding a note
 
-1.  **Open `js/script.js`.**
-2.  Locate the `publicationsData` array at the top of the file.
-3.  Add a new JavaScript object to this array, following the existing structure, or modify an existing entry. Ensure the `imageSrc` property correctly points to the image's path within `images/publications/`.
-4.  If adding a new image, place the image file in the `images/publications/` directory.
+Create `src/notes/my-note.md`:
 
-### Customizing Styles
-
-1.  **Open `css/styles.css`.**
-2.  All custom styles and overrides for the website's appearance are defined here. Feel free to modify existing rules or add new ones to change the design.
-
-### Updating Personal Information and Links
-
-1.  **Open `index.html`.**
-2.  Edit the text content in the "About Me" section or update the `href` attributes for your social and resume links.
-
+```markdown
 ---
+layout: note.njk
+title: "My Note"
+date: 2026-07-07
+displayDate: "July 7th, 2026"
+tags: ["topic"]
+description: "One-line summary shown on the notes index."
+---
+
+Inline math \(x^2\), display math on its own paragraph, fenced code blocks, callout divs.
+```
+
+The notes index updates automatically. Use `draft: true` to build a page without
+listing it. See `src/notes/markdown-demo.md` for everything the pipeline supports
+(math conventions, callouts, numbered equations).
+
+### Adding a project
+
+Create `src/projects/MyProject.md` with `layout: project.njk` and frontmatter for
+`title`, `authors`, `affiliations`, `venue`, `links`, `hero`/`heroCaption`, `thumb`,
+and `description`. See `src/projects/DropGen.md`.
+
+### Publications & news
+
+Edit `src/_data/publications.json` / `src/_data/news.json` and rebuild.
+Put figures in `images/publications/`.
+
+### LaTeX macros
+
+Global macros (`\R`, `\E`, `\norm{...}`, …) are defined in `.eleventy.js`.
+
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
 
----
-
 ## Acknowledgments
 
-* Design heavily inspired by [http://horwitz.ai](http://horwitz.ai).
-* Built with [Bulma CSS Framework](https://bulma.io/).
+* Design inspired by [horwitz.ai](http://horwitz.ai).
+* Built with [Eleventy](https://www.11ty.dev/), [KaTeX](https://katex.org/), and [PrismJS](https://prismjs.com/).

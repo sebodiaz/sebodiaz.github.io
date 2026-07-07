@@ -1,0 +1,85 @@
+---
+layout: base.njk
+description: "Sebo Diaz — MIT PhD student working on medical imaging and machine learning."
+---
+<section class="intro">
+  <img class="profile-pic" src="/images/profile/alternate_bw.webp" alt="Portrait of Sebo Diaz">
+  <div class="intro-text">
+    <h1>{{ site.name }}</h1>
+    <p class="intro-email">
+      {%- for email in site.emails %}
+      <a href="mailto:{{ email }}">{{ email }}</a>{% if not loop.last %} <span class="email-sep">|</span> {% endif %}
+      {%- endfor %}
+    </p>
+    <p>
+      I am a MIT PhD student working with
+      <a href="https://imes.mit.edu/people/adalsteinsson-elfar" target="_blank" rel="noopener">Prof. Elfar Adalsteinsson</a> and
+      <a href="https://people.csail.mit.edu/polina/" target="_blank" rel="noopener">Prof. Polina Golland</a>.
+    </p>
+    <p class="intro-social">
+      {%- for link in site.social %}
+      <a href="{{ link.url }}"{% if link.url.startsWith('http') %} target="_blank" rel="noopener"{% endif %}>{{ link.text }}</a>
+      {%- endfor %}
+    </p>
+  </div>
+</section>
+
+<section class="home-section">
+  <h2>Research interests</h2>
+  <ul>
+    <li>Incentivizing generalization beyond the training (source) distribution.</li>
+    <li>Exploring synthetic data for improved or otherwise unattainable representations.</li>
+    <li>Representation learning and optimal use of embeddings.</li>
+    <li>Exploiting numerical structure to enhance algorithms.</li>
+  </ul>
+</section>
+
+<section class="home-section">
+  <h2>Funding</h2>
+  <ul>
+    <li>NSF Graduate Research Fellowship Program (GRFP)</li>
+    <li>MathWorks Fellowship</li>
+    <li>MIT SoE Distinguished Engineer Fellowship</li>
+  </ul>
+</section>
+
+<section class="home-section">
+  <h2>Education</h2>
+  <p>
+    I received my B.S. from the University of Arizona in 2023 where I was fortunate to be mentored by
+    <a href="https://bme.engineering.arizona.edu/faculty-staff/faculty/arthur-gmitro" target="_blank" rel="noopener">Prof. Arthur Gmitro</a>,
+    <a href="https://bme.engineering.arizona.edu/faculty-staff/faculty/jennifer-barton" target="_blank" rel="noopener">Prof. Jennifer Barton</a>, and
+    <a href="https://bme.engineering.arizona.edu/faculty-staff/faculty/nan-kuei-chen" target="_blank" rel="noopener">Prof. Nan-kuei Chen</a>.
+  </p>
+</section>
+
+<section class="home-section">
+  <h2>News</h2>
+  <ul class="news-list">
+    {%- for item in news %}
+    <li><span class="news-date">{{ item.date | monthYear }}</span><span>{{ item.text }}</span></li>
+    {%- endfor %}
+  </ul>
+</section>
+
+<section class="home-section">
+  <h2>Publications</h2>
+  {%- for pub in publications %}
+  <div class="pub">
+    <button class="pub-thumb lightbox-trigger" data-src="{{ pub.image }}" data-caption="{{ pub.caption }}" aria-label="Enlarge figure">
+      <img src="{{ pub.image }}" alt="Figure from: {{ pub.title }}" loading="lazy">
+    </button>
+    <div class="pub-text">
+      <p class="pub-title">{{ pub.title }}</p>
+      <p class="pub-authors">{{ pub.authors | safe }}</p>
+      <p class="pub-meta"><span class="venue-tag">{{ pub.venue }}</span></p>
+      <p class="pub-description">{{ pub.description | safe }}</p>
+      <p class="pub-links">
+        {%- for link in pub.links %}
+        <a href="{{ link.url }}"{% if link.url.startsWith('http') %} target="_blank" rel="noopener"{% endif %}>{{ link.text }}&nbsp;&#8599;</a>
+        {%- endfor %}
+      </p>
+    </div>
+  </div>
+  {%- endfor %}
+</section>

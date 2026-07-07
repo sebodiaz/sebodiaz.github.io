@@ -1,0 +1,42 @@
+---
+layout: base.njk
+math: true
+prose: true
+---
+<article class="article">
+  <header class="article-header">
+    <p class="crumb"><a href="/notes/">&larr; All notes</a></p>
+    <h1 class="article-title">{{ title | safe }}</h1>
+    <p class="article-meta">
+      {{ displayDate }}
+      {%- if tags %}
+      &nbsp;&middot;&nbsp;
+      {%- for tag in tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+      {%- endif %}
+    </p>
+  </header>
+  {%- set toc = content | tocEntries %}
+  {%- if toc.length >= 2 %}
+  <aside class="toc" aria-label="Table of contents">
+    <nav>
+      <p class="toc-label">Contents</p>
+      <ul>
+        {%- for entry in toc %}
+        <li class="toc-h{{ entry.level }}"><a href="#{{ entry.id }}">{{ entry.text }}</a></li>
+        {%- endfor %}
+      </ul>
+    </nav>
+  </aside>
+  <details class="toc-inline">
+    <summary>Contents</summary>
+    <ul>
+      {%- for entry in toc %}
+      <li class="toc-h{{ entry.level }}"><a href="#{{ entry.id }}">{{ entry.text }}</a></li>
+      {%- endfor %}
+    </ul>
+  </details>
+  {%- endif %}
+  <div class="article-body">
+    {{ content | safe }}
+  </div>
+</article>

@@ -4,132 +4,200 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sebastian "Sebo" Diaz</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="./images/favicons/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="./images/favicons/favicon.svg" />
-  <link rel="shortcut icon" href="./images/favicons/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="./images/favicons/apple-touch-icon.png" />
-  <link rel="manifest" href="./images/favicons/site.webmanifest" />
-
-  <link rel="stylesheet" href="styles.css">
+  <title>Sebo Diaz</title>
+  <meta name="description" content="Sebo Diaz — MIT PhD student working on medical imaging and machine learning.">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="/images/favicons/favicon.svg">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
+  <link rel="manifest" href="/images/favicons/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script>
+    // Set theme before first paint to avoid a flash of the wrong scheme
+    (function () {
+      var stored = localStorage.getItem("theme");
+      var theme = stored || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
 </head>
 
 <body>
-  <section class="section">
-    <div class="main-container">
-      <div class="columns is-vcentered">
-        <div class="column is-narrow has-text-centered">
-          <figure class="image is-inline-block">
-            <img class="profile-pic" src="./images/profile/color.webp" alt="Profile Picture">
-          </figure>
-        </div>
-        <div class="column">
-          <h1 class="title is-3">Sebastian "Sebo" Diaz</h1>
-          <h2 class="subtitle is-5">
-            <a href="mailto:sebodiaz@csail.mit.edu">sebodiaz@csail.mit.edu</a>
-          </h2>
-          <div class="content mt-2">
-
-            <p>
-              I am a MIT PhD student working with
-              <a href="https://imes.mit.edu/people/adalsteinsson-elfar" target="_blank">Prof. Elfar Adalsteinsson</a> and
-              <a href="https://people.csail.mit.edu/polina/" target="_blank">Prof. Polina Golland</a>.
-            </p>
-
-            <p><strong>Research Interests:</strong>
-            <ul style="margin-top: 2px;">
-              <li> Incentivizing generalization beyond the training (source) distribution.</li>
-              <li>Exploring synthetic data for improved or otherwise unattainable representations.</li>
-              <li>Representation learning and optimal use of embeddings.</li>
-              <li>Exploiting numerical structure to enhance algorithms.</li>
-            </ul>
-          </p>
-
-            <p>
-              <strong>Funding:</strong>
-              <ul style="margin-top: 2px;">
-                <li>NSF Graduate Research Fellowship Program (GRFP)</li>
-                <li>MathWorks Fellowship</li>
-                <li>MIT SoE Distinguished Engineer Fellowship</li>
-              </ul>
-            </p>
-
-            <p>
-              <strong>Education:</strong>
-              I received my B.S. from the University of Arizona in 2023 where I was fortunate
-              to be mentored by
-              <a href="https://bme.engineering.arizona.edu/faculty-staff/faculty/arthur-gmitro" target="_blank">Prof. Arthur Gmitro</a>,
-              <a href="https://bme.engineering.arizona.edu/faculty-staff/faculty/jennifer-barton" target="_blank">Prof. Jennifer Barton</a>, and
-              <a href="https://bme.engineering.arizona.edu/faculty-staff/faculty/nan-kuei-chen" target="_blank">Prof. Nan-kuei Chen</a>.
-            </p>
-
-
-          </div>
-          <div class="buttons social-icons is-flex is-justify-content-start mt-4">
-            <!-- <a class="button is-light" href="mailto:sebodiaz@csail.mit.edu"><span class="icon"><i class="fas fa-envelope"></i></span><span>Email</span></a> -->
-            <a class="button is-light" href="https://www.twitter.com/DiazSebo" target="_blank"><span class="icon"><i class="fab fa-twitter"></i></span><span>Twitter</span></a>
-            <a class="button is-light" href="https://github.com/sebodiaz" target="_blank"><span class="icon"><i class="fab fa-github"></i></span><span>Github</span></a>
-            <a class="button is-light" href="https://www.linkedin.com/in/sebastian-d-diaz/" target="_blank"><span class="icon"><i class="fab fa-linkedin"></i></span><span>LinkedIn</span></a>
-            <a class="button is-light" href="./files/cv.pdf" target="_blank"><span class="icon"><i class="fas fa-file-alt"></i></span><span>CV</span></a>
-            <!-- <a class="button is-light" href="./notes/"><span class="icon"><i class="fas fa-pen-nib"></i></span><span>Notes</span></a> -->
-          </div>
-        </div>
+  <header class="site-header">
+    <nav class="site-nav">
+      <a class="site-name" href="/">Sebo Diaz</a>
+      <div class="nav-links">
+        <a href="/notes/">notes</a>
+        <a href="/projects/">projects</a>
+        <a href="/files/cv.pdf" target="_blank" rel="noopener">cv</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
       </div>
-    </div>
-  </section>
+    </nav>
+  </header>
 
+  <main class="page">
+    <section class="intro">
+  <img class="profile-pic" src="/images/profile/alternate_bw.webp" alt="Portrait of Sebo Diaz">
+  <div class="intro-text">
+    <h1>Sebastian &quot;Sebo&quot; Diaz</h1>
+    <p class="intro-email">
+      <a href="mailto:sebodiaz@csail.mit.edu">sebodiaz@csail.mit.edu</a> <span class="email-sep">|</span> 
+      <a href="mailto:sdd@mit.edu">sdd@mit.edu</a> <span class="email-sep">|</span> 
+      <a href="mailto:seboddiaz@gmail.com">seboddiaz@gmail.com</a>
+    </p>
+    <p>
+      I am a MIT PhD student working with
+      <a href="https://imes.mit.edu/people/adalsteinsson-elfar" target="_blank" rel="noopener">Prof. Elfar Adalsteinsson</a> and
+      <a href="https://people.csail.mit.edu/polina/" target="_blank" rel="noopener">Prof. Polina Golland</a>.
+    </p>
+    <p class="intro-social">
+      <a href="mailto:sebodiaz@csail.mit.edu">Email</a>
+      <a href="https://www.twitter.com/DiazSebo" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://github.com/sebodiaz" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/sebastian-d-diaz/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="/files/cv.pdf">CV</a>
+    </p>
+  </div>
+</section>
 
-  <section class="section">
-    <div class="main-container">
-      <h2 class="title is-4">News</h2>
-      
-      <div id="news-container">
-        </div>
-    </div>
-  </section>
-<!--
-  <section class="section">
-    <div class="main-container">
-      <h2 class="title is-4">Notes</h2>
-      <p class="mb-4" style="color: #555;">
-        Informal write-ups on math, methods, and ideas
-        <a href="./notes/">View all &rarr;</a>
+<section class="home-section">
+  <h2>Research interests</h2>
+  <ul>
+    <li>Incentivizing generalization beyond the training (source) distribution.</li>
+    <li>Exploring synthetic data for improved or otherwise unattainable representations.</li>
+    <li>Representation learning and optimal use of embeddings.</li>
+    <li>Exploiting numerical structure to enhance algorithms.</li>
+  </ul>
+</section>
+
+<section class="home-section">
+  <h2>Funding</h2>
+  <ul>
+    <li>NSF Graduate Research Fellowship Program (GRFP)</li>
+    <li>MathWorks Fellowship</li>
+    <li>MIT SoE Distinguished Engineer Fellowship</li>
+  </ul>
+</section>
+
+<section class="home-section">
+  <h2>Education</h2>
+  <p>
+    I received my B.S. from the University of Arizona in 2023 where I was fortunate to be mentored by
+    <a href="https://bme.engineering.arizona.edu/faculty-staff/faculty/arthur-gmitro" target="_blank" rel="noopener">Prof. Arthur Gmitro</a>,
+    <a href="https://bme.engineering.arizona.edu/faculty-staff/faculty/jennifer-barton" target="_blank" rel="noopener">Prof. Jennifer Barton</a>, and
+    <a href="https://bme.engineering.arizona.edu/faculty-staff/faculty/nan-kuei-chen" target="_blank" rel="noopener">Prof. Nan-kuei Chen</a>.
+  </p>
+</section>
+
+<section class="home-section">
+  <h2>News</h2>
+  <ul class="news-list">
+    <li><span class="news-date">Dec 2025</span><span>Invited MIT IMES Seminar talk.</span></li>
+    <li><span class="news-date">Sep 2025</span><span>Invited MIT IMES Retreat talk.</span></li>
+    <li><span class="news-date">Jun 2025</span><span>MICCAI paper accepted.</span></li>
+    <li><span class="news-date">Apr 2024</span><span>Awarded NSF GRFP.</span></li>
+  </ul>
+</section>
+
+<section class="home-section">
+  <h2>Publications</h2>
+  <div class="pub">
+    <button class="pub-thumb lightbox-trigger" data-src="/images/publications/invariant_sebo_review.png" data-caption="(Left) DropGen code and (Right) PGM that motivates our method." aria-label="Enlarge figure">
+      <img src="/images/publications/invariant_sebo_review.png" alt="Figure from: Why Invariance is Not Enough for Biomedical Domain Generalization and How to Fix It" loading="lazy">
+    </button>
+    <div class="pub-text">
+      <p class="pub-title">Why Invariance is Not Enough for Biomedical Domain Generalization and How to Fix It</p>
+      <p class="pub-authors"><strong>Sebo Diaz</strong>, Polina Golland, Elfar Adalsteinsson, Neel Dey</p>
+      <p class="pub-meta"><span class="venue-tag">In Review</span></p>
+      <p class="pub-description">Invariance is a common inductive bias for domain generalization. However, we show that it can lead to sub-optimal performance. We propose a simple and theoretically grounded intervention, named DropGen, that exploits invariance and domain-specific information achieving high-sample efficiency and competitive performance.</p>
+      <p class="pub-links">
+        <a href="/projects/DropGen/">Project Page&nbsp;&#8599;</a>
+        <a href="https://arxiv.org/abs/2604.02564" target="_blank" rel="noopener">arXiv&nbsp;&#8599;</a>
+        <a href="https://github.com/sebodiaz/DropGen" target="_blank" rel="noopener">GitHub&nbsp;&#8599;</a>
       </p>
-      <div id="notes-preview">
-        <div class="news-item mb-4">
-          <strong><a href="./notes/latex-demo/">LaTeX Demo &mdash; Equations &amp; Formatting</a></strong>
-          <span style="font-size:0.82rem; color:#aaa; margin-left:0.5rem;">March 2026</span>
-          <p style="font-size:0.92rem; color:#666; margin-top:0.2rem;">
-            A tour of supported math environments in the notes system: inline equations, aligned systems, callout boxes, and code.
-          </p>
-        </div>
-      </div>
     </div>
-  </section>
--->
-  <section class="section">
-    <div class="main-container">
-      <h2 class="title is-4">Publications</h2>
-      <div id="publications-container">
-        </div>
+  </div>
+  <div class="pub">
+    <button class="pub-thumb lightbox-trigger" data-src="/images/publications/pose_diaz_review_2025.png" data-caption="Qualtitative results. Pictured are challenging, lower GA subjects. Noticeably, our method significantly improves the estimated pose. PCK = Percentage of Correct Keypoints." aria-label="Enlarge figure">
+      <img src="/images/publications/pose_diaz_review_2025.png" alt="Figure from: Robust Fetal Pose Estimation across Gestational Ages via Cross-Population Augmentation" loading="lazy">
+    </button>
+    <div class="pub-text">
+      <p class="pub-title">Robust Fetal Pose Estimation across Gestational Ages via Cross-Population Augmentation</p>
+      <p class="pub-authors"><strong>Sebo Diaz</strong>, Benjamin Billot, Neel Dey, Molin Zhang, Esra Abaci-Turk, Ellen Grant, Polina Golland, Elfar Adalsteinsson</p>
+      <p class="pub-meta"><span class="venue-tag">MICCAI 2025</span></p>
+      <p class="pub-description">Current fetal pose estimation methods fail to generalize across gestational ages (GA). We propose a novel method to capture lower GA subjects using exclusively higher GA subjects. We achieve state-of-the-art performance on a challenging clinical dataset enabling more accurate motion estimation.</p>
+      <p class="pub-links">
+        <a href="https://papers.miccai.org/miccai-2025/0789-Paper3296.html" target="_blank" rel="noopener">MICCAI Publication&nbsp;&#8599;</a>
+        <a href="https://arxiv.org/abs/2509.12062v1" target="_blank" rel="noopener">arXiv&nbsp;&#8599;</a>
+        <a href="https://github.com/sebodiaz/cross-population-pose" target="_blank" rel="noopener">GitHub&nbsp;&#8599;</a>
+      </p>
     </div>
-  </section>
-  <section class="section">
-    <div class="main-container has-text-centered">
-      <p>Design heavily inspired by <a href="http://horwitz.ai" target="_blank" rel="noopener noreferrer">http://horwitz.ai</a>.</p>
+  </div>
+  <div class="pub">
+    <button class="pub-thumb lightbox-trigger" data-src="/images/publications/slfrank_diaz_ismrm_2024.png" data-caption="Images are in-utero fetal brain acquisitions. (Top) Gold standard HASTE (TSE) pulse design image, SAR limits (red) are hit. (Bottom) SLfRank pulse design image. SAR limits are not hit and reduced by 22%." aria-label="Enlarge figure">
+      <img src="/images/publications/slfrank_diaz_ismrm_2024.png" alt="Figure from: Design of Novel RF Pulse for Fetal MRI Refocusing Trains using Rank Factorization (SLfRank) to Reduce SAR and Improve Image Acquisition Efficiency" loading="lazy">
+    </button>
+    <div class="pub-text">
+      <p class="pub-title">Design of Novel RF Pulse for Fetal MRI Refocusing Trains using Rank Factorization (SLfRank) to Reduce SAR and Improve Image Acquisition Efficiency</p>
+      <p class="pub-authors"><strong>Sebo Diaz</strong>, Yamin Arefeen, Borjan Gagoski, Ellen Grant, Elfar Adalsteinsson</p>
+      <p class="pub-meta"><span class="venue-tag">ISMRM 2022</span></p>
+      <p class="pub-description">Relaxed optimization problem enables significant image acceleration. We show <em>22%</em> acceleration compared to industry standard with no tradeoffs. Applications in fetal, but pertains to any turbo spin echo sequence.</p>
+      <p class="pub-links">
+        <a href="https://archive.ismrm.org/2022/2926.html" target="_blank" rel="noopener">ISMRM Publication&nbsp;&#8599;</a>
+      </p>
     </div>
-  </section>
+  </div>
+  <div class="pub">
+    <button class="pub-thumb lightbox-trigger" data-src="/images/publications/bodymodel_liu_miccai_2025.png" data-caption="Body model as applied to Echo Planar Imaging (EPI) sequences. The body model is used to estimate the fetal pose and shape from segmentations and keypoint estimations." aria-label="Enlarge figure">
+      <img src="/images/publications/bodymodel_liu_miccai_2025.png" alt="Figure from: Fetuses Made Simple: Modeling and Tracking of Fetal Shape and Pose" loading="lazy">
+    </button>
+    <div class="pub-text">
+      <p class="pub-title">Fetuses Made Simple: Modeling and Tracking of Fetal Shape and Pose</p>
+      <p class="pub-authors">Yingcheng Liu, Peiqi Wang, <strong>Sebo Diaz</strong>, Benjamin Billot, Esra Abaci Turk, Ellen Grant, Polina Golland</p>
+      <p class="pub-meta"><span class="venue-tag">MICCAI 2025</span></p>
+      <p class="pub-description">Analyzing fetal body motion and shape is paramount in pre-natal diagnostics and monitoring. Existing methods mainly rely on keypoints or volumetric segmentations of the fetal body. Keypoints oversimplify the body structure, while segmentation lacks temporal correspondence. To address these shortcomings, we construct a 3D articulated statistical fetal body model based on the Skinned Multi-Person Linear Model (SMPL).</p>
+      <p class="pub-links">
+        <a href="https://papers.miccai.org/miccai-2025/0333-Paper4748.html" target="_blank" rel="noopener">MICCAI Publication&nbsp;&#8599;</a>
+        <a href="https://arxiv.org/abs/2506.17858" target="_blank" rel="noopener">arXiv&nbsp;&#8599;</a>
+        <a href="https://github.com/MedicalVisionGroup/fetal-smpl" target="_blank" rel="noopener">GitHub&nbsp;&#8599;</a>
+      </p>
+    </div>
+  </div>
+  <div class="pub">
+    <button class="pub-thumb lightbox-trigger" data-src="/images/publications/stochastic_offset_ismrm_2024.png" data-caption="Stochastic-offset-strategy enhanced RF pulse optimization with auto-differentiation" aria-label="Enlarge figure">
+      <img src="/images/publications/stochastic_offset_ismrm_2024.png" alt="Figure from: Stochastic-offset-strategy enhanced RF pulse optimization with auto-differentiation" loading="lazy">
+    </button>
+    <div class="pub-text">
+      <p class="pub-title">Stochastic-offset-strategy enhanced RF pulse optimization with auto-differentiation</p>
+      <p class="pub-authors">Molin Zhang, Nicholas Arango, <strong>Sebo Diaz</strong>, Jacob White, Elfar Adalsteinsson</p>
+      <p class="pub-meta"><span class="venue-tag">ISMRM 2024</span></p>
+      <p class="pub-description">Voxel-wise objective function with auto-differentiation for RF pulse optimization has become prevalent. While benefit from the spatial flexibility of desired pattern, conventional fixed-point representation of a matrix fed into the voxel-wise objective function leads to sub-optimal and undesired resultant profile at courser resolution. We assign random spatial offsets to each point centered at the voxel and show superior performance to fixed-point representations.</p>
+      <p class="pub-links">
+        <a href="https://submissions.mirasmart.com/ISMRM2024/Itinerary/PresentationDetail.aspx?evdid=5606" target="_blank" rel="noopener">ISMRM Publication&nbsp;&#8599;</a>
+      </p>
+    </div>
+  </div>
+</section>
 
-  <div id="lightbox" class="lightbox">
-    <span class="close-button">&times;</span>
-    <img class="lightbox-content" id="lightbox-img" src="">
-    <div id="lightbox-caption" class="caption-text"></div>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Sebastian Diaz</p>
+  </footer>
+
+  <div id="lightbox" class="lightbox" hidden>
+    <button class="lightbox-close" aria-label="Close">&times;</button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    <div id="lightbox-caption" class="lightbox-caption"></div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="/js/site.js" defer></script>
 </body>
 
 </html>

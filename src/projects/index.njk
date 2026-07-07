@@ -1,0 +1,28 @@
+---
+layout: base.njk
+title: Projects
+description: "Research projects and code."
+---
+<h1 class="page-title">Projects</h1>
+<p class="page-subtitle">Research projects and code.</p>
+
+<ul class="post-list">
+  {%- for project in collections.projects %}
+  <li class="post-item">
+    {%- if project.data.thumb %}
+    <a class="post-thumb" href="{{ project.url }}"><img src="{{ project.data.thumb }}" alt="" loading="lazy"></a>
+    {%- endif %}
+    <div class="post-item-body">
+      <div class="post-item-head">
+        <a class="post-title" href="{{ project.url }}">{{ project.data.title | safe }}</a>
+        {%- if project.data.venue %}
+        <span class="post-date">{{ project.data.venue }}</span>
+        {%- endif %}
+      </div>
+      {%- if project.data.description %}
+      <p class="post-description">{{ project.data.description }}</p>
+      {%- endif %}
+    </div>
+  </li>
+  {%- endfor %}
+</ul>

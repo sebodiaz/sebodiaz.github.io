@@ -1,0 +1,26 @@
+---
+layout: base.njk
+title: Notes
+description: "Informal write-ups on math, methods, and ideas."
+---
+<h1 class="page-title">Notes</h1>
+<p class="page-subtitle">Informal write-ups on math, methods, and ideas.</p>
+
+<ul class="post-list">
+  {%- for note in collections.notes %}
+  <li class="post-item">
+    <div class="post-item-body">
+      <div class="post-item-head">
+        <a class="post-title" href="{{ note.url }}">{{ note.data.title | safe }}</a>
+        <span class="post-date">{{ note.data.displayDate }}</span>
+      </div>
+      {%- if note.data.tags %}
+      <p class="post-tags">{% for tag in note.data.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</p>
+      {%- endif %}
+      {%- if note.data.description %}
+      <p class="post-description">{{ note.data.description }}</p>
+      {%- endif %}
+    </div>
+  </li>
+  {%- endfor %}
+</ul>
