@@ -42,9 +42,20 @@ commit both `src/` and the generated output.
 
 ```bash
 npm install
-npm run build     # one-off build
+npm run build     # build the site AND regenerate files/cv.pdf from /cv/
 npm run watch     # dev server with live reload at http://localhost:8080
 ```
+
+The PDF step renders the `/cv/` page with a headless Chromium-family browser
+(Playwright's Chromium, Chrome, or Edge — whichever is found). On a machine
+with none of them, run `npx playwright install chromium` once; until then the
+PDF step is skipped with a warning and the rest of the build still succeeds.
+
+### Updating the CV
+
+Edit `src/_data/cv.json` and run `npm run build` — both the `/cv/` page and
+the downloadable `files/cv.pdf` regenerate from it. There is no other source
+of truth (`npm run build:pdf` re-renders just the PDF).
 
 ### Adding a note
 

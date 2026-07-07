@@ -2,9 +2,9 @@
   "name": "website",
   "version": "1.0.0",
   "description": "This is the repository for my personal academic and professional website..",
-  "main": "script.js",
   "scripts": {
-    "build": "eleventy",
+    "build": "eleventy && node scripts/build-cv-pdf.mjs",
+    "build:pdf": "node scripts/build-cv-pdf.mjs",
     "watch": "eleventy --serve"
   },
   "repository": {
@@ -24,6 +24,7 @@
     "katex": "^0.17.0",
     "markdown-it": "^14.3.0",
     "markdown-it-anchor": "^9.2.1",
-    "markdown-it-texmath": "^1.0.0"
+    "markdown-it-texmath": "^1.0.0",
+    "playwright-core": "^1.61.1"
   }
 }

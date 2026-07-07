@@ -1,0 +1,113 @@
+{
+  "pdf": "/files/cv.pdf",
+  "updated": "July 2026",
+  "overview": [
+    "HST MIT PhD candidate in RLE & CSAIL.",
+    "Research interests in machine learning, (convex) optimization, representation learning, generalization, data augmentation, and reinforcement learning."
+  ],
+  "education": [
+    {
+      "school": "Massachusetts Institute of Technology",
+      "degree": "Ph.D. HST (Computer Science)",
+      "dates": "2023 – May 2028 (expected)",
+      "detail": "GPA: 5.00 / 5.00"
+    },
+    {
+      "school": "University of Arizona",
+      "degree": "B.S. in Biomedical Engineering; Minor in Mathematics",
+      "dates": "2019 – 2023",
+      "detail": "GPA: 3.95 / 4.00"
+    }
+  ],
+  "experience": [
+    {
+      "role": "Machine Learning Research",
+      "org": "Stealth Startup",
+      "location": "Kendall Square, Cambridge, MA",
+      "dates": "May 2026 – Sept. 2026",
+      "bullets": ["Post-training V/LLM research in non-verifiable RL settings."]
+    }
+  ],
+  "awards": [
+    { "name": "Graduate Research Fellowship Program", "org": "National Science Foundation", "year": "2024" },
+    { "name": "MathWorks Graduate Fellow", "org": "MathWorks", "year": "2024" },
+    { "name": "School of Engineering – Distinguished Graduate Student Fellow", "org": "MIT", "year": "2023" },
+    { "name": "Program for Exemplary Mentoring Fellow", "org": "MIT", "year": "2023" },
+    { "name": "Goldwater STEM Scholarship", "org": "Goldwater Foundation", "year": "2022" },
+    { "name": "Sophomore of the Year", "org": "University of Arizona", "year": "2021" },
+    { "name": "Native Health Care Scholar", "org": "Udall Foundation", "year": "2021" }
+  ],
+  "publications": {
+    "lead": [
+      {
+        "authors": "<strong>Sebastian Diaz</strong>, Polina Golland, Elfar Adalsteinsson, Neel Dey",
+        "title": "Why Invariance is Not Enough for Biomedical Domain Generalization and How to Fix It",
+        "venue": "Preprint: arXiv:2604.02564",
+        "year": "2026",
+        "url": "https://arxiv.org/abs/2604.02564"
+      },
+      {
+        "authors": "<strong>Sebastian Diaz</strong>, Benjamin Billot, Neel Dey, Mingxuan Zhang, Esra Abaci-Turk, Ellen Grant, Polina Golland, Elfar Adalsteinsson",
+        "title": "Robust Fetal Pose Estimation across Gestational Ages via Cross-Population Augmentation",
+        "venue": "Medical Image Computing and Computer Assisted Intervention (MICCAI)",
+        "year": "2025",
+        "url": "https://arxiv.org/abs/2509.12062"
+      },
+      {
+        "authors": "<strong>Sebastian Diaz</strong>, Yamin Arefeen, Borjan Gagoski, Ellen Grant, Elfar Adalsteinsson",
+        "title": "Design of Novel RF Pulse for Fetal MRI Refocusing Trains Using Rank Factorization (SLfRank) to Reduce SAR and Improve Image Acquisition Efficiency",
+        "venue": "International Society for Magnetic Resonance in Medicine (ISMRM)",
+        "year": "2022",
+        "url": "https://cds.ismrm.org/protected/22MProceedings/PDFfiles/2926.html"
+      }
+    ],
+    "contributing": [
+      {
+        "authors": "Yingcheng Liu, Peiqi Wang, <strong>Sebastian Diaz</strong>, Benjamin Billot, Esra Abaci-Turk, Ellen Grant, Polina Golland",
+        "title": "Fetuses Made Simple: Modeling and Tracking of Fetal Shape and Pose",
+        "venue": "Medical Image Computing and Computer Assisted Intervention (MICCAI)",
+        "year": "2025",
+        "url": "https://arxiv.org/abs/2506.17858"
+      },
+      {
+        "authors": "Molin Zhang, Nicolas Arango, <strong>Sebastian Diaz</strong>, Jacob White, Elfar Adalsteinsson",
+        "title": "Stochastic-Offset-Strategy Enhanced RF Pulse Optimization with Auto-Differentiation",
+        "venue": "International Society for Magnetic Resonance in Medicine (ISMRM)",
+        "year": "2024",
+        "url": "https://submissions.mirasmart.com/ISMRM2024/Itinerary/PresentationDetail.aspx?evdid=5606"
+      },
+      {
+        "authors": "Ricky Cordova, Kelli Kiekens, Susan Burrell, William Drake, Zaynah Kmeid, Photini Rice, Andrew Rocha, <strong>Sebastian Diaz</strong>, Shigehiro Yamada, Michael Yozwiak, Omar L. Nelson, Gustavo C. Rodriguez, John Heusinkveld, Ie-Ming Shih, David S. Alberts, Jennifer K. Barton",
+        "title": "Sub-Millimeter Endoscope Demonstrates Feasibility of In Vivo Reflectance Imaging, Fluorescence Imaging, and Cell Collection in the Fallopian Tubes",
+        "venue": "Journal of Biomedical Optics",
+        "year": "2021",
+        "url": ""
+      }
+    ]
+  },
+  "talks": [
+    {
+      "title": "RepreSeg: Stable Representations for Domain Generalized Segmentation",
+      "venue": "MIT IMES Seminar, Cambridge, MA",
+      "date": "Dec. 12, 2025"
+    },
+    {
+      "title": "Learning Alongside Invariant Representations: Robust Generalization in Medical Imaging",
+      "venue": "MIT IMES Department Retreat, Boston, MA",
+      "date": "Sept. 29, 2025"
+    }
+  ],
+  "coursework": [
+    { "org": "MIT", "items": "Deep Learning, Numerical Methods, Computer Vision, fMRI Neuroscience" },
+    { "org": "Harvard Medical School", "items": "Pathology, Immunology, Genetics, Cardiovascular & Pulmonary Pathophysiology" }
+  ],
+  "skills": [
+    { "label": "Programming", "items": "Python, PyTorch, C++" },
+    { "label": "Technical", "items": "Numerical optimization, probability" }
+  ],
+  "service": [
+    { "role": "Reviewer", "org": "MICCAI: PIPPI", "year": "2025–26" },
+    { "role": "Reviewer", "org": "CVPR", "year": "2026" },
+    { "role": "Reviewer", "org": "NeurIPS", "year": "2026" }
+  ]
+}

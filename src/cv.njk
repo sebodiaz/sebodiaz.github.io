@@ -1,0 +1,109 @@
+---
+layout: base.njk
+title: CV
+description: "Curriculum vitae of Sebastian Diaz — MIT PhD candidate in HST, RLE & CSAIL."
+permalink: /cv/
+---
+<div class="cv-print-header">
+  <h1>{{ site.name | safe }}</h1>
+  <p>
+    {%- for email in site.emails %}{{ email }}{% if not loop.last %} &middot; {% endif %}{% endfor %} &middot; sebodiaz.github.io
+  </p>
+  <p class="cv-print-updated">Updated {{ cv.updated }}</p>
+</div>
+
+<div class="cv-head">
+  <div>
+    <h1 class="page-title">Curriculum Vitae</h1>
+    <p class="page-subtitle">Updated {{ cv.updated }}</p>
+  </div>
+  <a class="btn cv-download" href="{{ cv.pdf }}" download="sebastian-diaz-cv.pdf">Download PDF</a>
+</div>
+
+<section class="home-section">
+  <h2>Overview</h2>
+  <ul>
+    {%- for item in cv.overview %}
+    <li>{{ item }}</li>
+    {%- endfor %}
+  </ul>
+</section>
+
+<section class="home-section">
+  <h2>Education</h2>
+  {%- for edu in cv.education %}
+  <div class="cv-item">
+    <div class="cv-row"><strong>{{ edu.school }}</strong><span class="cv-dates">{{ edu.dates }}</span></div>
+    <div class="cv-row"><span>{{ edu.degree }}</span><span class="cv-dates">{{ edu.detail }}</span></div>
+  </div>
+  {%- endfor %}
+</section>
+
+<section class="home-section">
+  <h2>Industry Experience</h2>
+  {%- for job in cv.experience %}
+  <div class="cv-item">
+    <div class="cv-row"><span><strong>{{ job.role }}</strong>, {{ job.org }}</span><span class="cv-dates">{{ job.dates }}</span></div>
+    <div class="cv-row"><span class="cv-muted">{{ job.location }}</span></div>
+    <ul>
+      {%- for bullet in job.bullets %}
+      <li>{{ bullet }}</li>
+      {%- endfor %}
+    </ul>
+  </div>
+  {%- endfor %}
+</section>
+
+<section class="home-section">
+  <h2>Fellowships &amp; Awards</h2>
+  {%- for award in cv.awards %}
+  <div class="cv-row"><span><strong>{{ award.name }}</strong>, {{ award.org }}</span><span class="cv-dates">{{ award.year }}</span></div>
+  {%- endfor %}
+</section>
+
+<section class="home-section">
+  <h2>Publications</h2>
+  <h3 class="cv-subhead">Lead Author</h3>
+  <ol class="cv-pubs">
+    {%- for pub in cv.publications.lead %}
+    <li>{{ pub.authors | safe }}. &ldquo;{% if pub.url %}<a href="{{ pub.url }}" target="_blank" rel="noopener">{{ pub.title }}</a>{% else %}{{ pub.title }}{% endif %}&rdquo;. <em>{{ pub.venue }}</em>, {{ pub.year }}.</li>
+    {%- endfor %}
+  </ol>
+  <h3 class="cv-subhead">Contributing Author</h3>
+  <ol class="cv-pubs">
+    {%- for pub in cv.publications.contributing %}
+    <li>{{ pub.authors | safe }}. &ldquo;{% if pub.url %}<a href="{{ pub.url }}" target="_blank" rel="noopener">{{ pub.title }}</a>{% else %}{{ pub.title }}{% endif %}&rdquo;. <em>{{ pub.venue }}</em>, {{ pub.year }}.</li>
+    {%- endfor %}
+  </ol>
+</section>
+
+<section class="home-section">
+  <h2>Invited Talks</h2>
+  {%- for talk in cv.talks %}
+  <div class="cv-item">
+    <div class="cv-row"><strong>{{ talk.title }}</strong></div>
+    <div class="cv-row"><span class="cv-muted">{{ talk.venue }}</span><span class="cv-dates">{{ talk.date }}</span></div>
+  </div>
+  {%- endfor %}
+</section>
+
+<section class="home-section">
+  <h2>Relevant Coursework</h2>
+  {%- for course in cv.coursework %}
+  <div class="cv-row cv-label-row"><strong>{{ course.org }}</strong><span>{{ course.items }}</span></div>
+  {%- endfor %}
+</section>
+
+<section class="home-section">
+  <h2>Skills</h2>
+  {%- for skill in cv.skills %}
+  <div class="cv-row cv-label-row"><strong>{{ skill.label }}</strong><span>{{ skill.items }}</span></div>
+  {%- endfor %}
+</section>
+
+<section class="home-section">
+  <h2>Service</h2>
+  {%- for item in cv.service %}
+  <div class="cv-row"><span><strong>{{ item.role }}</strong>, {{ item.org }}</span><span class="cv-dates">{{ item.year }}</span></div>
+  {%- endfor %}
+</section>
