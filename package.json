@@ -5,7 +5,8 @@
   "scripts": {
     "build": "eleventy && node scripts/build-cv-pdf.mjs",
     "build:pdf": "node scripts/build-cv-pdf.mjs",
-    "watch": "eleventy --serve"
+    "watch": "eleventy --serve",
+    "serve": "eleventy --serve"
   },
   "repository": {
     "type": "git",
