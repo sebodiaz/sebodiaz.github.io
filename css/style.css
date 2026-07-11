@@ -239,7 +239,20 @@ img {
 }
 
 [data-theme="dark"] .ascii-bg {
-  opacity: 0.14;
+  opacity: 0.26;
+}
+
+/* ripple overlay: full-contrast ink, no center fade, so disturbances pop */
+.ascii-bg-ripples {
+  color: var(--fg);
+  font-weight: 700;
+  opacity: 0.55;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+[data-theme="dark"] .ascii-bg-ripples {
+  opacity: 0.55;
 }
 
 .intro {

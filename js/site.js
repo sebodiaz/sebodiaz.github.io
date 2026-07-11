@@ -10,7 +10,8 @@ document.getElementById("theme-toggle").addEventListener("click", function () {
 // terminal feel and the cost negligible. Honors prefers-reduced-motion.
 (function () {
   var el = document.getElementById("ascii-bg");
-  if (!el) return;
+  var rippleEl = document.getElementById("ascii-bg-ripples");
+  if (!el || !rippleEl) return;
   var chars = [" ", " ", " ", ".", "·", "~", "≈", "~"];
   var f1 = 0.1 + Math.random() * 0.06;
   var f2 = 0.05 + Math.random() * 0.03;
@@ -41,25 +42,38 @@ document.getElementById("theme-toggle").addEventListener("click", function () {
     ripples = ripples.filter(function (r) { return t - r.t0 < RIPPLE_LIFE; });
 
     var lines = [];
+    var rippleLines = [];
     for (var y = 0; y < rows; y++) {
       var line = "";
+      var rline = "";
       var py = y * lh;
       for (var x = 0; x < cols; x++) {
         var v = Math.sin(x * f1 + y * 0.7 + a) + Math.sin(x * f2 + y * 0.35 + b);
-        for (var k = 0; k < live.length; k++) {
-          var rp = live[k];
-          var dx = x * cw - rp.x;
-          var dy = py - rp.y;
-          var d = Math.sqrt(dx * dx + dy * dy);
-          v += 1.4 * Math.cos(d * 0.065 - rp.age * 10) * Math.exp(-d * 0.011) * rp.decay;
-        }
-        if (v < -2) v = -2;
-        if (v > 2) v = 2;
         line += chars[Math.round(((v + 2) / 4) * (chars.length - 1))];
+        if (live.length) {
+          var rv = 0;
+          for (var k = 0; k < live.length; k++) {
+            var rp = live[k];
+            var dx = x * cw - rp.x;
+            var dy = py - rp.y;
+            var d = Math.sqrt(dx * dx + dy * dy);
+            rv += 1.4 * Math.cos(d * 0.065 - rp.age * 10) * Math.exp(-d * 0.011) * rp.decay;
+          }
+          if (rv > 0.35 || rv < -0.35) {
+            var cv = v + rv;
+            if (cv < -2) cv = -2;
+            if (cv > 2) cv = 2;
+            rline += chars[Math.round(((cv + 2) / 4) * (chars.length - 1))];
+          } else {
+            rline += " ";
+          }
+        }
       }
       lines.push(line);
+      if (live.length) rippleLines.push(rline);
     }
     el.textContent = lines.join("\n");
+    rippleEl.textContent = live.length ? rippleLines.join("\n") : "";
   }
 
   measure();
