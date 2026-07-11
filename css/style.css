@@ -227,11 +227,12 @@ img {
   pointer-events: none;
   user-select: none;
   font-family: var(--mono);
-  font-size: 14px;
-  line-height: 21px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 25px;
   white-space: pre;
   color: var(--fg-muted);
-  opacity: 0.09;
+  opacity: 0.1;
 }
 
 [data-theme="dark"] .ascii-bg {

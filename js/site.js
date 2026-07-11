@@ -11,7 +11,7 @@ document.getElementById("theme-toggle").addEventListener("click", function () {
   if (!el) return;
   var chars = [" ", " ", " ", ".", "·", "~", "≈", "~"];
   function render() {
-    var cw = 9.6, lh = 21;
+    var cw = 12, lh = 25; // match .ascii-bg font metrics
     var cols = Math.ceil(window.innerWidth / cw) + 1;
     var rows = Math.ceil(window.innerHeight / lh) + 1;
     var f1 = 0.1 + Math.random() * 0.06;
