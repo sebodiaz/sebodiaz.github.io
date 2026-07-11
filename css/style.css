@@ -1,46 +1,48 @@
 /* ---------------------------------------------------------------------------
    Sebo Diaz — personal site
-   Modern minimal sans; CSS variables drive the light/dark themes.
+   Retro terminal: warm paper by day, amber phosphor on near-black by night.
+   Mono type carries the chrome (wordmark, labels, meta); prose stays serif.
 --------------------------------------------------------------------------- */
 
 :root {
-  --bg: #ffffff;
-  --bg-subtle: #f6f8fa;
-  --fg: #1a1d21;
-  --fg-muted: #6b7280;
-  --border: #e5e7eb;
-  --accent: #8b2332;
-  --accent-soft: rgba(139, 35, 50, 0.35);
-  --selection: #f0d6da;
-  --radius: 3px;
+  --bg: #faf7f0;
+  --bg-subtle: #f2ecdf;
+  --fg: #26211a;
+  --fg-muted: #7c7263;
+  --border: #e2d9c6;
+  --accent: #9a5b00;
+  --accent-soft: rgba(154, 91, 0, 0.35);
+  --selection: #f3dcae;
+  --radius: 2px;
 
-  --code-comment: #6a737d;
-  --code-keyword: #d73a49;
-  --code-string: #0a3069;
-  --code-number: #005cc5;
-  --code-function: #6f42c1;
-  --code-class: #22863a;
+  --code-comment: #8a7f6c;
+  --code-keyword: #a3421e;
+  --code-string: #206040;
+  --code-number: #9a5b00;
+  --code-function: #6e4bab;
+  --code-class: #206060;
 
+  --display: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
   --sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --serif: "IBM Plex Serif", "Charter", "Bitstream Charter", Cambria, Georgia, serif;
-  --mono: ui-monospace, "SF Mono", "Cascadia Code", "Fira Mono", Menlo, monospace;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", "Cascadia Code", "Fira Mono", Menlo, monospace;
 }
 
 [data-theme="dark"] {
-  --bg: #0f1115;
-  --bg-subtle: #171a20;
-  --fg: #e2e4e9;
-  --fg-muted: #9aa1ac;
-  --border: #262a32;
-  --accent: #d17983;
-  --accent-soft: rgba(209, 121, 131, 0.45);
-  --selection: #55323a;
+  --bg: #0e0c08;
+  --bg-subtle: #191510;
+  --fg: #e6ddc8;
+  --fg-muted: #97906f;
+  --border: #322b1c;
+  --accent: #ffb000;
+  --accent-soft: rgba(255, 176, 0, 0.4);
+  --selection: #52400e;
 
-  --code-comment: #8b949e;
-  --code-keyword: #ff7b72;
-  --code-string: #a5d6ff;
-  --code-number: #79c0ff;
-  --code-function: #d2a8ff;
+  --code-comment: #8a8267;
+  --code-keyword: #ff9e64;
+  --code-string: #9ece6a;
+  --code-number: #ffb000;
+  --code-function: #c8a3f5;
   --code-class: #7ee787;
 }
 
@@ -123,14 +125,31 @@ img {
 }
 
 .site-name {
-  font-weight: 700;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 0.95rem;
   color: var(--fg);
-  letter-spacing: -0.01em;
 }
 
 .site-name:hover {
   text-decoration: none;
   color: var(--accent);
+}
+
+.cursor {
+  color: var(--accent);
+  margin-left: 2px;
+  animation: blink 1.2s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor {
+    animation: none;
+  }
 }
 
 .nav-links {
@@ -140,12 +159,13 @@ img {
 }
 
 .nav-links a {
+  font-family: var(--mono);
   color: var(--fg-muted);
-  font-size: 0.92rem;
+  font-size: 0.85rem;
 }
 
 .nav-links a:hover {
-  color: var(--fg);
+  color: var(--accent);
   text-decoration: none;
 }
 
@@ -234,14 +254,21 @@ img {
 }
 
 .home-section h2 {
+  font-family: var(--mono);
   font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.09em;
-  color: var(--accent);
+  letter-spacing: 0.07em;
+  color: var(--fg-muted);
   border-bottom: 1px solid var(--border);
   padding-bottom: 0.4rem;
   margin: 0 0 1rem;
+}
+
+/* the "## " is the terminal wink — comment syntax as section marker */
+.home-section h2::before {
+  content: "## ";
+  color: var(--accent);
 }
 
 .home-section ul {
@@ -265,9 +292,10 @@ img {
 }
 
 .news-date {
-  flex: 0 0 5rem;
+  font-family: var(--mono);
+  flex: 0 0 5.5rem;
   color: var(--fg-muted);
-  font-size: 0.88rem;
+  font-size: 0.8rem;
   padding-top: 0.1em;
 }
 
@@ -342,12 +370,22 @@ img {
 }
 
 .venue-tag {
-  font-family: var(--sans);
-  font-size: 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--fg-muted);
+}
+
+.venue-tag::before {
+  content: "[";
+  color: var(--accent);
+}
+
+.venue-tag::after {
+  content: "]";
+  color: var(--accent);
 }
 
 /* --------------------------------------------------- notes/projects index */
@@ -416,8 +454,9 @@ img {
 }
 
 .post-date {
+  font-family: var(--mono);
   flex-shrink: 0;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   color: var(--fg-muted);
 }
 
@@ -432,8 +471,8 @@ img {
 }
 
 .tag {
-  font-family: var(--sans);
-  font-size: 0.78rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
   color: var(--fg-muted);
 }
 
@@ -466,8 +505,9 @@ img {
 }
 
 .article-meta {
+  font-family: var(--mono);
   margin: 0 0 2.25rem;
-  font-size: 0.88rem;
+  font-size: 0.8rem;
   color: var(--fg-muted);
 }
 
@@ -618,7 +658,7 @@ img {
 }
 
 .toc-label {
-  font-family: var(--sans);
+  font-family: var(--mono);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -923,6 +963,17 @@ pre code {
 
 /* printing the CV page yields a clean document */
 @media print {
+  /* the terminal theme is screen-only: print black-on-white */
+  :root {
+    --bg: #ffffff;
+    --bg-subtle: #f4f4f4;
+    --fg: #000000;
+    --fg-muted: #444444;
+    --border: #bbbbbb;
+    --accent: #000000;
+    --accent-soft: rgba(0, 0, 0, 0.35);
+  }
+
   .site-header,
   .site-footer,
   .cv-download,
@@ -931,6 +982,12 @@ pre code {
   .toc-inline,
   .crumb {
     display: none;
+  }
+
+  .home-section h2::before,
+  .venue-tag::before,
+  .venue-tag::after {
+    content: "";
   }
 
   .cv-print-header {
