@@ -1,3 +1,10 @@
+// Theme toggle — the initial theme is set inline in <head> to avoid a flash.
+document.getElementById("theme-toggle").addEventListener("click", function () {
+  var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", next);
+  localStorage.setItem("theme", next);
+});
+
 // Scroll-spy: highlight the TOC entry for the section currently in view
 (function () {
   var toc = document.querySelector(".toc");
