@@ -1,27 +1,27 @@
 /* ---------------------------------------------------------------------------
    Sebo Diaz — personal site
-   Retro terminal, gruvbox palette: butter-cream paper by day, warm gray-brown
-   with bright orange by night.
+   Retro terminal, ice palette: cool near-white paper by day, cold near-black
+   with steel-blue phosphor by night.
    Mono type carries the chrome (wordmark, labels, meta); prose stays serif.
 --------------------------------------------------------------------------- */
 
 :root {
-  --bg: #fbf1c7;
-  --bg-subtle: #f2e5bc;
-  --fg: #3c3836;
-  --fg-muted: #7c6f64;
-  --border: #d5c4a1;
-  --accent: #af3a03;
-  --accent-soft: rgba(175, 58, 3, 0.35);
-  --selection: #ecd9a8;
+  --bg: #ffffff;
+  --bg-subtle: #f6f8fa;
+  --fg: #1f2328;
+  --fg-muted: #59636e;
+  --border: #d1d9e0;
+  --accent: #0969da;
+  --accent-soft: rgba(9, 105, 218, 0.35);
+  --selection: #bbdcfc;
   --radius: 2px;
 
-  --code-comment: #928374;
-  --code-keyword: #9d0006;
-  --code-string: #79740e;
-  --code-number: #8f3f71;
-  --code-function: #b57614;
-  --code-class: #427b58;
+  --code-comment: #6e7781;
+  --code-keyword: #cf222e;
+  --code-string: #0a3069;
+  --code-number: #0550ae;
+  --code-function: #8250df;
+  --code-class: #116329;
 
   --display: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
   --sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -30,21 +30,21 @@
 }
 
 [data-theme="dark"] {
-  --bg: #282828;
-  --bg-subtle: #32302f;
-  --fg: #ebdbb2;
-  --fg-muted: #a89984;
-  --border: #504945;
-  --accent: #fe8019;
-  --accent-soft: rgba(254, 128, 25, 0.4);
-  --selection: #5a3d20;
+  --bg: #0f1216;
+  --bg-subtle: #181d24;
+  --fg: #e5e9ee;
+  --fg-muted: #8b97a5;
+  --border: #2a323c;
+  --accent: #8fc1e8;
+  --accent-soft: rgba(143, 193, 232, 0.4);
+  --selection: #23364a;
 
-  --code-comment: #928374;
-  --code-keyword: #fb4934;
-  --code-string: #b8bb26;
-  --code-number: #d3869b;
-  --code-function: #fabd2f;
-  --code-class: #8ec07c;
+  --code-comment: #8b949e;
+  --code-keyword: #ff7b72;
+  --code-string: #a5d6ff;
+  --code-number: #79c0ff;
+  --code-function: #d2a8ff;
+  --code-class: #7ee787;
 }
 
 /* ------------------------------------------------------------------ base */
