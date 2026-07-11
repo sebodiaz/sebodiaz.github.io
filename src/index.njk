@@ -18,7 +18,7 @@ description: "Sebo Diaz — MIT PhD student working on medical imaging and machi
     </p>
     <p class="intro-social">
       {%- for link in site.social %}
-      <a href="{{ link.url }}"{% if link.url.startsWith('http') %} target="_blank" rel="noopener"{% endif %}>{{ link.text }}</a>
+      <a href="{{ link.url }}"{% if link.url.startsWith('http') %} target="_blank" rel="noopener"{% endif %}>{{ link.text }}</a>{% if not loop.last %} <span class="email-sep">|</span> {% endif %}
       {%- endfor %}
     </p>
   </div>

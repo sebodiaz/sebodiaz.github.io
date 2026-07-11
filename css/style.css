@@ -245,7 +245,7 @@ img {
 .intro-social {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem 1rem;
+  gap: 0.35rem 0.6rem;
   font-size: 0.92rem;
 }
 
