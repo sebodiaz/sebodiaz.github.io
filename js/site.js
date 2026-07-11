@@ -5,6 +5,38 @@ document.getElementById("theme-toggle").addEventListener("click", function () {
   localStorage.setItem("theme", next);
 });
 
+// ASCII wave field — random interference pattern, different every visit
+(function () {
+  var el = document.getElementById("ascii-bg");
+  if (!el) return;
+  var chars = [" ", " ", " ", ".", "·", "~", "≈", "~"];
+  function render() {
+    var cw = 9.6, lh = 21;
+    var cols = Math.ceil(window.innerWidth / cw) + 1;
+    var rows = Math.ceil(window.innerHeight / lh) + 1;
+    var f1 = 0.1 + Math.random() * 0.06;
+    var f2 = 0.05 + Math.random() * 0.03;
+    var p1 = Math.random() * 6.28;
+    var p2 = Math.random() * 6.28;
+    var lines = [];
+    for (var y = 0; y < rows; y++) {
+      var line = "";
+      for (var x = 0; x < cols; x++) {
+        var v = Math.sin(x * f1 + y * 0.7 + p1) + Math.sin(x * f2 + y * 0.35 + p2);
+        line += chars[Math.round(((v + 2) / 4) * (chars.length - 1))];
+      }
+      lines.push(line);
+    }
+    el.textContent = lines.join("\n");
+  }
+  render();
+  var t;
+  window.addEventListener("resize", function () {
+    clearTimeout(t);
+    t = setTimeout(render, 200);
+  });
+})();
+
 // Scroll-spy: highlight the TOC entry for the section currently in view
 (function () {
   var toc = document.querySelector(".toc");
