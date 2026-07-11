@@ -11,9 +11,7 @@
   --fg-muted: #7c7263;
   --border: #e2d9c6;
   --accent: #9a5b00;
-  --accent-2: #b13d72;
   --accent-soft: rgba(154, 91, 0, 0.35);
-  --grid-line: rgba(154, 91, 0, 0.22);
   --selection: #f3dcae;
   --radius: 2px;
 
@@ -31,16 +29,14 @@
 }
 
 [data-theme="dark"] {
-  --bg: #120e1e;
-  --bg-subtle: #1b1530;
+  --bg: #0e0c08;
+  --bg-subtle: #191510;
   --fg: #e6ddc8;
-  --fg-muted: #9d93b4;
-  --border: #322947;
+  --fg-muted: #97906f;
+  --border: #322b1c;
   --accent: #ffb000;
-  --accent-2: #ff2e88;
   --accent-soft: rgba(255, 176, 0, 0.4);
-  --grid-line: rgba(255, 176, 0, 0.28);
-  --selection: #4d2338;
+  --selection: #52400e;
 
   --code-comment: #8a8267;
   --code-keyword: #ff9e64;
@@ -116,8 +112,7 @@ img {
 /* ---------------------------------------------------------------- header */
 
 .site-header {
-  border-bottom: 2px solid;
-  border-image: linear-gradient(90deg, var(--accent), var(--accent-2)) 1;
+  border-bottom: 1px solid var(--border);
 }
 
 .site-nav {
@@ -214,42 +209,6 @@ img {
 }
 
 /* ------------------------------------------------------------- homepage */
-
-/* a quiet nod to synthwave: small amber horizon in the terminal's own palette */
-.horizon {
-  position: relative;
-  height: 100px;
-  margin: -2.5rem calc(50% - 50vw) 2.25rem;
-  overflow: hidden;
-  border-bottom: 1px solid var(--border);
-}
-
-.horizon-sun {
-  position: absolute;
-  left: 50%;
-  bottom: 26px;
-  width: 64px;
-  height: 64px;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  background: linear-gradient(var(--accent) 10%, var(--accent-2) 85%);
-  -webkit-mask-image: linear-gradient(#000 0 58%, transparent 58% 62%, #000 62% 72%, transparent 72% 77%, #000 77% 85%, transparent 85% 91%, #000 91%);
-  mask-image: linear-gradient(#000 0 58%, transparent 58% 62%, #000 62% 72%, transparent 72% 77%, #000 77% 85%, transparent 85% 91%, #000 91%);
-}
-
-.horizon-grid {
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 34px;
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 100% 9px, 34px 100%;
-  transform: perspective(90px) rotateX(50deg);
-  transform-origin: top;
-  -webkit-mask-image: linear-gradient(transparent, #000 55%);
-  mask-image: linear-gradient(transparent, #000 55%);
-}
 
 .intro {
   display: flex;
@@ -1019,7 +978,6 @@ pre code {
   .site-footer,
   .cv-download,
   .cv-head,
-  .horizon,
   .toc,
   .toc-inline,
   .crumb {
