@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DecoderCR — Sebo Diaz</title>
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="/images/favicons/favicon.svg">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
+  <link rel="manifest" href="/images/favicons/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/katex/katex.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script>
+    // Set theme before first paint to avoid a flash of the wrong scheme
+    (function () {
+      var stored = localStorage.getItem("theme");
+      var theme = stored || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="site-nav">
+      <a class="site-name" href="/">Sebo Diaz</a>
+      <div class="nav-links">
+        <a href="/notes/">notes</a>
+        <a href="/projects/">projects</a>
+        <a href="/cv/">cv</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page">
+    <article class="article">
+  <header class="article-header">
+    <p class="crumb"><a href="/notes/">&larr; All notes</a></p>
+    <h1 class="article-title">DecoderCR</h1>
+    <p class="article-meta">
+      July 7th, 2026
+      &nbsp;&middot;&nbsp;<span class="tag">immunology</span><span class="tag">ml</span><span class="tag">biology</span>
+    </p>
+  </header>
+  <aside class="toc" aria-label="Table of contents">
+    <nav>
+      <p class="toc-label">Contents</p>
+      <ul>
+        <li class="toc-h2"><a href="#background">Background</a></li>
+        <li class="toc-h3"><a href="#solution%3A-manufacture-diversity%2C-then-select">Solution: Manufacture Diversity, Then Select</a></li>
+        <li class="toc-h3"><a href="#tcr-basics">TCR Basics</a></li>
+        <li class="toc-h2"><a href="#decodertcr">DecoderTCR</a></li>
+        <li class="toc-h3"><a href="#the-data-problem">The data problem</a></li>
+        <li class="toc-h3"><a href="#the-reframe%3A-recognition-as-fill-in-the-blank">The reframe: recognition as fill-in-the-blank</a></li>
+        <li class="toc-h3"><a href="#the-two-stage-curriculum">The two-stage curriculum</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <details class="toc-inline">
+    <summary>Contents</summary>
+    <ul>
+      <li class="toc-h2"><a href="#background">Background</a></li>
+      <li class="toc-h3"><a href="#solution%3A-manufacture-diversity%2C-then-select">Solution: Manufacture Diversity, Then Select</a></li>
+      <li class="toc-h3"><a href="#tcr-basics">TCR Basics</a></li>
+      <li class="toc-h2"><a href="#decodertcr">DecoderTCR</a></li>
+      <li class="toc-h3"><a href="#the-data-problem">The data problem</a></li>
+      <li class="toc-h3"><a href="#the-reframe%3A-recognition-as-fill-in-the-blank">The reframe: recognition as fill-in-the-blank</a></li>
+      <li class="toc-h3"><a href="#the-two-stage-curriculum">The two-stage curriculum</a></li>
+    </ul>
+  </details>
+  <div class="article-body">
+    <p>Here, I go over <a href="https://www.biorxiv.org/content/10.64898/2026.02.04.703820v1">DecoderTCR: Compositional Pretraining and Entropy-Guided Decoding for TCR-pMHC Interactions</a>.</p>
+<h2 id="background" tabindex="-1">Background</h2>
+<p>There are two immune systems in our body: <strong>innate</strong> and <strong>adaptive</strong>. Innate immunity responds fast, is non-specific, and swarms antigens. Adaptive immunity, by contrast, is slow, hyper-specific, and applies targeted pressure on the antigen.</p>
+<p>The innate immune system swarms because it recognizes broad molecular patterns evolutionarily conserved across a class of pathogens (bacterial cell walls, unmethylated CpG DNA, viral RNA signatures). These are recognized by <em>hardcoded</em>, germline-encoded receptors, essentially a big lookup table. Fast, but blunt: it cannot tell one virus from another, and it cannot remember.</p>
+<p>Adaptive immunity is precise, but that precision comes as a <strong>matching problem</strong>. To apply &quot;targeted pressure on the antigen,&quot; you need a receptor that fits <em>this specific</em> threat and not the millions of harmless proteins your own body makes. However, a pathogen you have never seen could present essenetially <em>any</em> short protein fragment. How do we get around this? Well, the system generates one for any possible target.</p>
+<h3 id="solution%3A-manufacture-diversity%2C-then-select" tabindex="-1">Solution: Manufacture Diversity, Then Select</h3>
+<p>The adaptive system's answer is brute force.</p>
+<ol>
+<li><strong>Generate enormous receptor diversity randomly.</strong> As each T cell matures, it assembles its T-cell receptor (TCR) by shuffling gene segments: pick a <strong>V</strong> segment, a <strong>D</strong>, and a <strong>J</strong> segment from a menu, then splice them together with random nucleotide insertions and deletions at the junctions. The result is a repertoire of more than <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>10</mn></msup></mrow><annotation encoding="application/x-tex">10^{10}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">10</span></span></span></span></span></span></span></span></span></span></span></span></eq> distinct TCRs. The most variable region (where the segments meet) is the <strong>CDR3</strong>, the part that contacts the antigen.</li>
+<li><strong>Select for usefulness after the fact.</strong> The body generates a swarm of random TCRs; when one matches an antigen, that match triggers <strong>clonal selection</strong> and then <strong>clonal expansion</strong> (the matched T cell multiplies).</li>
+</ol>
+<p>In short, adaptive immunity is a <strong>generate-diverse-then-select</strong> system.</p>
+<h3 id="tcr-basics" tabindex="-1">TCR Basics</h3>
+<p>A TCR never sees an intact pathogen. It can only see fragments <em>displayed by the body's own cells</em>, presented on <strong>peptide–MHC complexes (pMHCs)</strong> that coat the cell surface. Every cell continuously chops up a sample of its internal proteins, loads the resulting peptides onto <strong>MHC</strong> molecules, and holds them up at the surface like flashcards of what is inside it with self peptides on a healthy cell, viral peptides on an infected one.</p>
+<p>Recognition is the event where a TCR engages one of these flashcards. Crucially, it is a <strong>three-body interaction</strong> where the TCR reads the peptide <em>and</em> the MHC scaffold holding it at the same time:</p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>recognition</mtext><mo>=</mo><mtext>TCR</mtext><mo>+</mo><mtext>peptide</mtext><mo>+</mo><mtext>MHC</mtext><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">\text{recognition} = \text{TCR} + \text{peptide} + \text{MHC}.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8623em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">recognition</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord text"><span class="mord">TCR</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">peptide</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">MHC</span></span><span class="mord">.</span></span></span></span></span></eqn></section><p>This is why, as we will see, the model treats the MHC not as background scenery but as a first-class part of the object it has to reason about.</p>
+<h2 id="decodertcr" tabindex="-1">DecoderTCR</h2>
+<h3 id="the-data-problem" tabindex="-1">The data problem</h3>
+<p>The paper starts by emphasizing data asymmetry.</p>
+<ul>
+<li><strong>Repertoires are cheap to sequence.</strong> Draw blood and read out the millions of TCRs a person is carrying. Abundant — but <em>unlabeled</em>: we see the receptors, not what they recognize.</li>
+<li><strong>What MHCs present is also cheap.</strong> We can enumerate the peptides displayed by a given MHC. Abundant — but again one-sided.</li>
+<li><strong>The pairing is rare.</strong> Confirming that <em>this</em> TCR recognizes <em>that</em> pMHC requires a wet-lab assay. The result is roughly <strong>30k paired examples against ~1M unpaired ones.</strong></li>
+</ul>
+<p>The key idea is to not attack the pairing head-on. Instead of learning the joint distribution directly, DecoderTCR first learns the <strong>marginals</strong> — it trains on <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mtext>peptide</mtext><mo separator="true">,</mo><mtext>MHC</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p(\text{peptide}, \text{MHC})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord text"><span class="mord">peptide</span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord text"><span class="mord">MHC</span></span><span class="mclose">)</span></span></span></span></eq> and <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mtext>TCR</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p(\text{TCR})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord text"><span class="mord">TCR</span></span><span class="mclose">)</span></span></span></span></eq> <em>separately</em>, exploiting the abundant unpaired data first, and only later spends the scarce paired data on what marginals alone cannot teach.</p>
+<h3 id="the-reframe%3A-recognition-as-fill-in-the-blank" tabindex="-1">The reframe: recognition as fill-in-the-blank</h3>
+<p>Before the training, the authors do a simple and effective trick. As opposed to building a bespoke &quot;docking&quot; network, DecoderTCR applies plain concatenation of the entire complex into a <strong>single sequence</strong>:</p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">[</mo><mtext> </mtext><mtext>MHC</mtext><mo>∥</mo><mtext>peptide</mtext><mo>∥</mo><mtext>TCR</mtext><mi>α</mi><mo>∥</mo><mtext>TCR</mtext><mi>β</mi><mtext> </mtext><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[\,\text{MHC} \parallel \text{peptide} \parallel \text{TCR}\alpha \parallel \text{TCR}\beta\,]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord text"><span class="mord">MHC</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">peptide</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">TCR</span></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">TCR</span></span><span class="mord mathnormal" style="margin-right:0.0528em;">β</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mclose">]</span></span></span></span></span></eqn></section><p>and trains a <strong>masked language model</strong> over it. This is the same fill-in-the-blank objective as BERT, but on amino acids. Simply: mask some residues, predict them from the rest.</p>
+<p>This is the payload idea of the paper. Once the complex is one string, the question <em>&quot;does this TCR bind this pMHC?&quot;</em> turns into <em>&quot;are these residues mutually consistent under the learned distribution?&quot;</em> — and the model's ordinary bidirectional attention across the string <strong>is</strong> the interaction model. There is no separate module for how the chains talk to each other; cross-chain dependency is just attention between positions in the same sequence.</p>
+<h3 id="the-two-stage-curriculum" tabindex="-1">The two-stage curriculum</h3>
+<p>The marginal-first strategy is implemented as a two-stage training curriculum:</p>
+<ol>
+<li><strong>Stage 1 — learn each component's grammar.</strong> Train on the abundant unpaired data: TCR repertoires on their own, and peptide–MHC pairs on their own. The model learns what a realistic CDR3 loop looks like and which peptides fit which MHC groove — but never sees a TCR and its target peptide together.</li>
+<li><strong>Stage 2 — learn how the two halves constrain each other.</strong> Continue training on the scarce paired data, now masking peptide <em>and</em> CDR3 positions jointly. To fill in a masked peptide the model must use the CDR3 in context, and vice versa. This cross-conditioning — <em>&quot;given this CDR3, what peptide would it grip?&quot;</em> — is the one thing only paired data can teach.</li>
+</ol>
+<p>One extra detail worth keeping, because it is genuinely elegant: the masking is <strong>informed</strong>, not random. Instead of masking 15% of positions uniformly, the model spends its masking budget on the binding-relevant positions — the peptide, the CDR3 loops, and the MHC pocket residues. In effect: <em>make the model predict the parts that actually matter.</em></p>
+
+  </div>
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Sebastian Diaz</p>
+  </footer>
+
+  <div id="lightbox" class="lightbox" hidden>
+    <button class="lightbox-close" aria-label="Close">&times;</button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    <div id="lightbox-caption" class="lightbox-caption"></div>
+  </div>
+
+  <script src="/js/site.js" defer></script>
+</body>
+
+</html>
