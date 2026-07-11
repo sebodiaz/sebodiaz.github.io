@@ -232,7 +232,7 @@ img {
   line-height: 25px;
   white-space: pre;
   color: var(--fg-muted);
-  opacity: 0.12;
+  opacity: 0.22;
   /* fade toward the center so the text column sits in calm water */
   -webkit-mask-image: radial-gradient(ellipse 70% 75% at 50% 50%, transparent 30%, #000 90%);
   mask-image: radial-gradient(ellipse 70% 75% at 50% 50%, transparent 30%, #000 90%);
