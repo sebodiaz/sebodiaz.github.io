@@ -24,14 +24,37 @@ document.getElementById("theme-toggle").addEventListener("click", function () {
     rows = Math.ceil(window.innerHeight / lh) + 1;
   }
 
+  // cursor ripples: each source emits an expanding, decaying ring
+  var ripples = [];
+  var RIPPLE_LIFE = 2200; // ms
+
   function render(t) {
     var a = p1 + t * 0.00028; // the two components roll in
     var b = p2 - t * 0.00019; // opposite directions
+    var cw = 12, lh = 25;
+    var live = [];
+    for (var i = 0; i < ripples.length; i++) {
+      var r = ripples[i];
+      var age = t - r.t0;
+      if (age < RIPPLE_LIFE) live.push({ x: r.x, y: r.y, age: age / 1000, decay: Math.exp(-(age / 1000) * 1.8) });
+    }
+    ripples = ripples.filter(function (r) { return t - r.t0 < RIPPLE_LIFE; });
+
     var lines = [];
     for (var y = 0; y < rows; y++) {
       var line = "";
+      var py = y * lh;
       for (var x = 0; x < cols; x++) {
         var v = Math.sin(x * f1 + y * 0.7 + a) + Math.sin(x * f2 + y * 0.35 + b);
+        for (var k = 0; k < live.length; k++) {
+          var rp = live[k];
+          var dx = x * cw - rp.x;
+          var dy = py - rp.y;
+          var d = Math.sqrt(dx * dx + dy * dy);
+          v += 1.4 * Math.cos(d * 0.065 - rp.age * 10) * Math.exp(-d * 0.011) * rp.decay;
+        }
+        if (v < -2) v = -2;
+        if (v > 2) v = 2;
         line += chars[Math.round(((v + 2) / 4) * (chars.length - 1))];
       }
       lines.push(line);
@@ -45,12 +68,22 @@ document.getElementById("theme-toggle").addEventListener("click", function () {
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     var last = 0;
     requestAnimationFrame(function tick(now) {
-      if (now - last >= 110) {
+      var interval = ripples.length ? 70 : 110; // tighter cadence while rippling
+      if (now - last >= interval) {
         last = now;
         render(now);
       }
       requestAnimationFrame(tick);
     });
+
+    var lastRipple = 0;
+    window.addEventListener("mousemove", function (e) {
+      var now = performance.now();
+      if (now - lastRipple < 120) return;
+      lastRipple = now;
+      ripples.push({ x: e.clientX, y: e.clientY, t0: now });
+      if (ripples.length > 8) ripples.shift();
+    }, { passive: true });
   }
 
   var t;
