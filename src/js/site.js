@@ -20,7 +20,7 @@ document.getElementById("theme-toggle").addEventListener("click", function () {
   var cols = 0, rows = 0;
 
   function measure() {
-    var cw = 12, lh = 25; // match .ascii-bg font metrics
+    var cw = 8.4, lh = 18; // match .ascii-bg font metrics
     cols = Math.ceil(window.innerWidth / cw) + 1;
     rows = Math.ceil(window.innerHeight / lh) + 1;
   }
@@ -32,7 +32,7 @@ document.getElementById("theme-toggle").addEventListener("click", function () {
   function render(t) {
     var a = p1 + t * 0.00028; // the two components roll in
     var b = p2 - t * 0.00019; // opposite directions
-    var cw = 12, lh = 25;
+    var cw = 8.4, lh = 18;
     var live = [];
     for (var i = 0; i < ripples.length; i++) {
       var r = ripples[i];

@@ -227,9 +227,9 @@ img {
   pointer-events: none;
   user-select: none;
   font-family: var(--mono);
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 600;
-  line-height: 25px;
+  line-height: 18px;
   white-space: pre;
   color: var(--fg-muted);
   opacity: 0.22;
@@ -245,14 +245,14 @@ img {
 /* ripple overlay: full-contrast ink, no center fade, so disturbances pop */
 .ascii-bg-ripples {
   color: var(--fg);
-  font-weight: 700;
-  opacity: 0.55;
+  font-weight: 400;
+  opacity: 0.45;
   -webkit-mask-image: none;
   mask-image: none;
 }
 
 [data-theme="dark"] .ascii-bg-ripples {
-  opacity: 0.55;
+  opacity: 0.45;
 }
 
 .intro {
