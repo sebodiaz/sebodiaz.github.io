@@ -217,58 +217,29 @@ img {
 
 /* ------------------------------------------------------------- homepage */
 
-/* generated ASCII wave field behind the page, different every visit */
-.ascii-bg {
+/* digital hallway: one-point-perspective wireframe receding behind the
+   page; the vanishing point sits in fog under the content column */
+.hallway {
   position: fixed;
   inset: 0;
   z-index: -1;
-  margin: 0;
-  overflow: hidden;
   pointer-events: none;
-  user-select: none;
-  contain: strict;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 600;
-  line-height: 14px;
-  white-space: pre;
   color: var(--fg-muted);
-  opacity: 0.4;
-  /* fade toward the center so the text column sits in calm water */
-  -webkit-mask-image: radial-gradient(ellipse 70% 75% at 50% 50%, transparent 30%, #000 90%);
-  mask-image: radial-gradient(ellipse 70% 75% at 50% 50%, transparent 30%, #000 90%);
+  opacity: 0.28;
+  -webkit-mask-image: radial-gradient(ellipse 62% 68% at 50% 50%, transparent 22%, #000 88%);
+  mask-image: radial-gradient(ellipse 62% 68% at 50% 50%, transparent 22%, #000 88%);
 }
 
-[data-theme="dark"] .ascii-bg {
-  opacity: 0.45;
+.hallway svg {
+  display: block;
 }
 
-/* each drop falls on the compositor: smooth, no per-frame JS */
-.ascii-bg .drop {
-  position: absolute;
-  top: 0;
-  /* stretched wide; `scale` is independent of the animated transform */
-  scale: 1.6 1;
-  transform-origin: left;
-  will-change: transform;
-  animation: drop-fall linear both;
+.hallway * {
+  vector-effect: non-scaling-stroke;
 }
 
-/* the leading glyph is brighter than the trail */
-.ascii-bg .drop b {
-  font-weight: inherit;
-  color: var(--fg);
-}
-
-@keyframes drop-fall {
-  from { transform: translateY(-100%); }
-  to   { transform: translateY(100vh); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ascii-bg .drop {
-    animation-play-state: paused; /* negative delays leave a static mid-fall frame */
-  }
+[data-theme="dark"] .hallway {
+  opacity: 0.35;
 }
 
 .intro {
@@ -1039,7 +1010,7 @@ pre code {
   .site-footer,
   .cv-download,
   .cv-head,
-  .ascii-bg,
+  .hallway,
   .toc,
   .toc-inline,
   .crumb {
