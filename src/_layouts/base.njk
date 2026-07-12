@@ -35,32 +35,35 @@
 </head>
 
 <body>
+  <div class="hall-glow" aria-hidden="true"></div>
   <div class="hallway" aria-hidden="true">
-    <svg viewBox="0 0 100 100" preserveAspectRatio="none" fill="none" width="100%" height="100%">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none" fill="none" stroke-width="1" width="100%" height="100%">
       <defs>
-        <radialGradient id="vanish" gradientUnits="userSpaceOnUse" cx="57.0" cy="44.0" r="78">
+        <radialGradient id="vanish" gradientUnits="userSpaceOnUse" cx="50" cy="50" r="76">
           <stop offset="0" class="vp-core" />
           <stop offset="0.3" class="vp-mid" />
           <stop offset="1" class="vp-edge" />
         </radialGradient>
       </defs>
-      <g stroke="url(#vanish)">
-      <rect x="9.12" y="7.04" width="84.0" height="84.0" stroke-width="1.59" />
-      <rect x="16.78" y="12.95" width="70.56" height="70.56" stroke-width="1.42" />
-      <rect x="23.22" y="17.92" width="59.27" height="59.27" stroke-width="1.27" />
-      <rect x="28.62" y="22.09" width="49.79" height="49.79" stroke-width="1.15" />
-      <rect x="33.16" y="25.6" width="41.82" height="41.82" stroke-width="1.04" />
-      <rect x="36.98" y="28.54" width="35.13" height="35.13" stroke-width="0.96" />
-      <rect x="40.18" y="31.02" width="29.51" height="29.51" stroke-width="0.88" />
-      <rect x="42.87" y="33.09" width="24.79" height="24.79" stroke-width="0.82" />
-      <rect x="45.13" y="34.84" width="20.82" height="20.82" stroke-width="0.77" />
-      <rect x="47.03" y="36.3" width="17.49" height="17.49" stroke-width="0.73" />
-      <line x1="0" y1="0" x2="57.0" y2="44.0" />
-      <line x1="100" y1="0" x2="57.0" y2="44.0" />
-      <line x1="0" y1="100" x2="57.0" y2="44.0" />
-      <line x1="100" y1="100" x2="57.0" y2="44.0" />
-      <line x1="0" y1="44.0" x2="57.0" y2="44.0" />
-      <line x1="100" y1="44.0" x2="57.0" y2="44.0" />
+      <g stroke="url(#vanish)" vector-effect="non-scaling-stroke">
+      <rect class="ring" x="8.0" y="8.0" width="84.0" height="84.0" />
+      <rect class="ring" x="14.72" y="14.72" width="70.56" height="70.56" />
+      <rect class="ring" x="20.36" y="20.36" width="59.27" height="59.27" />
+      <rect class="ring" x="25.11" y="25.11" width="49.79" height="49.79" />
+      <rect class="ring" x="29.09" y="29.09" width="41.82" height="41.82" />
+      <rect class="ring" x="32.44" y="32.44" width="35.13" height="35.13" />
+      <rect class="ring" x="35.24" y="35.24" width="29.51" height="29.51" />
+      <rect class="ring" x="37.61" y="37.61" width="24.79" height="24.79" />
+      <rect class="ring" x="39.59" y="39.59" width="20.82" height="20.82" />
+      <rect class="ring" x="41.26" y="41.26" width="17.49" height="17.49" />
+      <rect class="ring" x="42.66" y="42.66" width="14.69" height="14.69" />
+      <rect class="ring" x="43.83" y="43.83" width="12.34" height="12.34" />
+      <line x1="0" y1="0" x2="50" y2="50" />
+      <line x1="100" y1="0" x2="50" y2="50" />
+      <line x1="0" y1="100" x2="50" y2="50" />
+      <line x1="100" y1="100" x2="50" y2="50" />
+      <line x1="0" y1="50" x2="50" y2="50" />
+      <line x1="100" y1="50" x2="50" y2="50" />
       </g>
     </svg>
   </div>

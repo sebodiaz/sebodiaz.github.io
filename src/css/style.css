@@ -225,9 +225,43 @@ img {
   z-index: -1;
   pointer-events: none;
   opacity: 0.32;
-  /* fog follows the vanishing point, thin enough to let the core glow */
-  -webkit-mask-image: radial-gradient(ellipse 60% 66% at 57% 44%, transparent 13%, #000 82%);
-  mask-image: radial-gradient(ellipse 60% 66% at 57% 44%, transparent 13%, #000 82%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 66% at 50% 50%, transparent 15%, #000 82%);
+  mask-image: radial-gradient(ellipse 60% 66% at 50% 50%, transparent 15%, #000 82%);
+}
+
+/* the slow dolly: every ring drifts outward exactly one depth slot per
+   loop, so the cycle is seamless; the rails map onto themselves */
+.hallway .ring {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+  animation: hall-travel 5s linear infinite;
+}
+
+@keyframes hall-travel {
+  to { transform: scale(1.19048); } /* 1 / 0.84 */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hallway .ring {
+    animation: none;
+  }
+}
+
+/* the light at the end of the hallway */
+.hall-glow {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse 26% 30% at 50% 50%,
+    color-mix(in srgb, var(--accent-2) 14%, transparent),
+    transparent 70%);
+}
+
+[data-theme="dark"] .hall-glow {
+  background: radial-gradient(ellipse 26% 30% at 50% 50%,
+    color-mix(in srgb, var(--accent-2) 22%, transparent),
+    transparent 70%);
 }
 
 /* the hallway recedes into the accent light */
@@ -1016,6 +1050,7 @@ pre code {
   .cv-download,
   .cv-head,
   .hallway,
+  .hall-glow,
   .toc,
   .toc-inline,
   .crumb {
