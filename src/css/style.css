@@ -243,15 +243,29 @@ img {
   opacity: 0.45;
 }
 
-/* drop heads: full-contrast leading glyphs over the muted trails */
-.ascii-bg-ripples {
-  color: var(--fg);
-  font-weight: 400;
-  opacity: 0.5;
+/* each drop falls on the compositor: smooth, no per-frame JS */
+.ascii-bg .drop {
+  position: absolute;
+  top: 0;
+  will-change: transform;
+  animation: drop-fall linear both;
 }
 
-[data-theme="dark"] .ascii-bg-ripples {
-  opacity: 0.5;
+/* the leading glyph is brighter than the trail */
+.ascii-bg .drop b {
+  font-weight: 400;
+  color: var(--fg);
+}
+
+@keyframes drop-fall {
+  from { transform: translateY(-100%); }
+  to   { transform: translateY(100vh); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ascii-bg .drop {
+    animation-play-state: paused; /* negative delays leave a static mid-fall frame */
+  }
 }
 
 .intro {

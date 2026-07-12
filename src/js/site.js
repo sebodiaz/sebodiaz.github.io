@@ -6,103 +6,51 @@ document.getElementById("theme-toggle").addEventListener("click", function () {
 });
 
 // Math rain — sparse terminal rain whose glyphs are LaTeX/math symbols.
-// Trails render muted on the base layer; each drop's leading glyph renders
-// full-contrast on the overlay. Stepped ~7fps for the terminal cadence.
-// Honors prefers-reduced-motion (static frame, no fall).
+// Each drop is one element falling via a CSS transform animation, so the
+// motion is compositor-smooth with no per-frame JS. The trail is muted;
+// the leading (bottom) glyph is brighter. prefers-reduced-motion pauses
+// the animations mid-fall via CSS, leaving a static field.
 (function () {
   var el = document.getElementById("ascii-bg");
-  var headEl = document.getElementById("ascii-bg-ripples");
-  if (!el || !headEl) return;
+  if (!el) return;
 
   var GLYPHS = "∂∇Σλθπ∫αβγμσφψΩξητ≈∞×01+−=";
-  var CW = 6.6, LH = 14; // match .ascii-bg font metrics
-  var cols = 0, rows = 0;
-  var drops = [];
+  var CW = 6.6; // match .ascii-bg font metrics
 
   function glyph() {
     return GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
   }
 
-  function measure() {
-    cols = Math.ceil(window.innerWidth / CW) + 1;
-    rows = Math.ceil(window.innerHeight / LH) + 1;
+  function maxDrops() {
+    return Math.max(4, Math.round(window.innerWidth / CW / 12));
   }
 
-  function spawn() {
+  function spawn(delay) {
     var len = 3 + Math.floor(Math.random() * 6);
-    var chars = [];
-    for (var i = 0; i < len; i++) chars.push(glyph());
-    drops.push({
-      col: Math.floor(Math.random() * cols),
-      y: -len,                            // enter from above the fold
-      period: 2 + Math.floor(Math.random() * 3), // ticks per row-step
-      phase: 0,
-      len: len,
-      chars: chars,
+    var trail = "";
+    for (var i = 0; i < len - 1; i++) trail += glyph() + "\n";
+    var drop = document.createElement("span");
+    drop.className = "drop";
+    drop.textContent = trail;
+    var head = document.createElement("b");
+    head.textContent = glyph();
+    drop.appendChild(head);
+    var col = Math.floor(Math.random() * (window.innerWidth / CW));
+    drop.style.left = (col * CW).toFixed(1) + "px";
+    drop.style.animationDuration = (11 + Math.random() * 12).toFixed(1) + "s";
+    drop.style.animationDelay = delay.toFixed(1) + "s";
+    drop.addEventListener("animationend", function () {
+      drop.remove();
+      if (el.childElementCount < maxDrops()) spawn(Math.random() * 4);
     });
+    el.appendChild(drop);
   }
 
-  function render() {
-    var grid = [], heads = [];
-    for (var y = 0; y < rows; y++) {
-      grid.push(new Array(cols).fill(" "));
-      heads.push(new Array(cols).fill(" "));
-    }
-    for (var i = 0; i < drops.length; i++) {
-      var d = drops[i];
-      var headRow = Math.floor(d.y);
-      for (var j = 0; j < d.len; j++) {
-        var y2 = headRow - j;
-        if (y2 < 0 || y2 >= rows || d.col >= cols) continue;
-        if (j === 0) heads[y2][d.col] = d.chars[0];
-        else grid[y2][d.col] = d.chars[j];
-      }
-    }
-    el.textContent = grid.map(function (r) { return r.join(""); }).join("\n");
-    headEl.textContent = heads.map(function (r) { return r.join(""); }).join("\n");
+  // negative delays start the first drops mid-fall, so the screen is
+  // already raining on load instead of waiting a full descent
+  for (var i = 0, n = maxDrops(); i < n; i++) {
+    spawn(-Math.random() * 16);
   }
-
-  function tick() {
-    var moved = false;
-    for (var i = drops.length - 1; i >= 0; i--) {
-      var d = drops[i];
-      if (++d.phase >= d.period) {
-        d.phase = 0;
-        d.y += 1;
-        moved = true;
-        // a rare glyph mutation, like a flaky display
-        if (Math.random() < 0.03) d.chars[1 + Math.floor(Math.random() * (d.len - 1))] = glyph();
-      }
-      if (d.y - d.len > rows) drops.splice(i, 1);
-    }
-    // keep the storm sparse: aim for ~1 drop per 12 columns
-    if (drops.length < cols / 12 && Math.random() < 0.35) spawn();
-    if (moved) render();
-  }
-
-  measure();
-  // pre-roll so the first paint already has rain mid-fall
-  for (var w = 0; w < 120; w++) tick();
-
-  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    var last = 0;
-    requestAnimationFrame(function loop(now) {
-      if (now - last >= 140) {
-        last = now;
-        tick();
-      }
-      requestAnimationFrame(loop);
-    });
-  }
-
-  var t;
-  window.addEventListener("resize", function () {
-    clearTimeout(t);
-    t = setTimeout(function () {
-      measure();
-      render();
-    }, 200);
-  });
 })();
 
 // Scroll-spy: highlight the TOC entry for the section currently in view
