@@ -253,7 +253,7 @@ img {
 
 /* the leading glyph is brighter than the trail */
 .ascii-bg .drop b {
-  font-weight: 400;
+  font-weight: inherit;
   color: var(--fg);
 }
 

@@ -21,8 +21,10 @@ document.getElementById("theme-toggle").addEventListener("click", function () {
     return GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
   }
 
+  var WEIGHTS = [300, 400, 500, 600, 700];
+
   function maxDrops() {
-    return Math.max(4, Math.round(window.innerWidth / CW / 12));
+    return Math.max(8, Math.round(window.innerWidth / CW / 7));
   }
 
   function spawn(delay) {
@@ -37,8 +39,28 @@ document.getElementById("theme-toggle").addEventListener("click", function () {
     drop.appendChild(head);
     var col = Math.floor(Math.random() * (window.innerWidth / CW));
     drop.style.left = (col * CW).toFixed(1) + "px";
-    drop.style.animationDuration = (11 + Math.random() * 12).toFixed(1) + "s";
+    // uniform weight sampling gives the rain depth: light drops read
+    // as distant, heavy drops as near
+    drop.style.fontWeight = WEIGHTS[Math.floor(Math.random() * WEIGHTS.length)];
+    var duration = 11 + Math.random() * 12;
+    drop.style.animationDuration = duration.toFixed(1) + "s";
     drop.style.animationDelay = delay.toFixed(1) + "s";
+
+    // at one random moment of the descent, 75% chance the glyphs adjust
+    var remaining = (duration + delay) * 1000;
+    if (remaining > 500) {
+      setTimeout(function () {
+        if (!drop.isConnected || Math.random() >= 0.75) return;
+        var text = drop.firstChild.nodeValue;
+        var out = "";
+        for (var j = 0; j < text.length; j++) {
+          out += text[j] === "\n" ? "\n" : (Math.random() < 0.5 ? glyph() : text[j]);
+        }
+        drop.firstChild.nodeValue = out;
+        if (Math.random() < 0.5) head.textContent = glyph();
+      }, Math.random() * remaining);
+    }
+
     drop.addEventListener("animationend", function () {
       drop.remove();
       if (el.childElementCount < maxDrops()) spawn(Math.random() * 4);
