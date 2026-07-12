@@ -20,7 +20,7 @@ document.getElementById("theme-toggle").addEventListener("click", function () {
   var cols = 0, rows = 0;
 
   function measure() {
-    var cw = 8.4, lh = 18; // match .ascii-bg font metrics
+    var cw = 6.6, lh = 14; // match .ascii-bg font metrics
     cols = Math.ceil(window.innerWidth / cw) + 1;
     rows = Math.ceil(window.innerHeight / lh) + 1;
   }
@@ -32,7 +32,7 @@ document.getElementById("theme-toggle").addEventListener("click", function () {
   function render(t) {
     var a = p1 + t * 0.00028; // the two components roll in
     var b = p2 - t * 0.00019; // opposite directions
-    var cw = 8.4, lh = 18;
+    var cw = 6.6, lh = 14;
     var live = [];
     for (var i = 0; i < ripples.length; i++) {
       var r = ripples[i];
@@ -57,7 +57,7 @@ document.getElementById("theme-toggle").addEventListener("click", function () {
             var dx = x * cw - rp.x;
             var dy = py - rp.y;
             var d = Math.sqrt(dx * dx + dy * dy);
-            rv += 1.4 * Math.cos(d * 0.065 - rp.age * 10) * Math.exp(-d * 0.011) * rp.decay;
+            rv += 1.1 * Math.cos(d * 0.075 - rp.age * 8) * Math.exp(-d * 0.022) * rp.decay;
           }
           if (rv > 0.35 || rv < -0.35) {
             var cv = v + rv;
@@ -82,7 +82,7 @@ document.getElementById("theme-toggle").addEventListener("click", function () {
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     var last = 0;
     requestAnimationFrame(function tick(now) {
-      var interval = ripples.length ? 70 : 110; // tighter cadence while rippling
+      var interval = 140; // one calm cadence, rippling or not
       if (now - last >= interval) {
         last = now;
         render(now);

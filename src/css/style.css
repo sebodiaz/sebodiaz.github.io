@@ -227,9 +227,9 @@ img {
   pointer-events: none;
   user-select: none;
   font-family: var(--mono);
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 600;
-  line-height: 18px;
+  line-height: 14px;
   white-space: pre;
   color: var(--fg-muted);
   opacity: 0.22;
@@ -246,13 +246,13 @@ img {
 .ascii-bg-ripples {
   color: var(--fg);
   font-weight: 400;
-  opacity: 0.45;
+  opacity: 0.3;
   -webkit-mask-image: none;
   mask-image: none;
 }
 
 [data-theme="dark"] .ascii-bg-ripples {
-  opacity: 0.45;
+  opacity: 0.3;
 }
 
 .intro {
