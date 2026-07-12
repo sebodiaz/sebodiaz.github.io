@@ -224,11 +224,16 @@ img {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  color: var(--fg-muted);
-  opacity: 0.28;
-  -webkit-mask-image: radial-gradient(ellipse 62% 68% at 50% 50%, transparent 22%, #000 88%);
-  mask-image: radial-gradient(ellipse 62% 68% at 50% 50%, transparent 22%, #000 88%);
+  opacity: 0.32;
+  /* fog follows the vanishing point, thin enough to let the core glow */
+  -webkit-mask-image: radial-gradient(ellipse 60% 66% at 57% 44%, transparent 13%, #000 82%);
+  mask-image: radial-gradient(ellipse 60% 66% at 57% 44%, transparent 13%, #000 82%);
 }
+
+/* the hallway recedes into the accent light */
+.vp-core { stop-color: var(--accent-2); }
+.vp-mid  { stop-color: var(--accent); }
+.vp-edge { stop-color: var(--fg-muted); }
 
 .hallway svg {
   display: block;
@@ -239,7 +244,7 @@ img {
 }
 
 [data-theme="dark"] .hallway {
-  opacity: 0.35;
+  opacity: 0.42;
 }
 
 .intro {
