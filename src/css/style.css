@@ -247,6 +247,8 @@ img {
 .ascii-bg .drop {
   position: absolute;
   top: 0;
+  font-size: 13px;
+  line-height: 16px;
   will-change: transform;
   animation: drop-fall linear both;
 }
