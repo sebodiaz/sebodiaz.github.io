@@ -21,7 +21,7 @@ document.getElementById("theme-toggle").addEventListener("click", function () {
     return GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
   }
 
-  var WEIGHTS = [500, 600, 700];
+  var WEIGHTS = [300, 400, 500, 600, 700];
 
   function maxDrops() {
     return Math.max(8, Math.round(window.innerWidth / CW / 7));
