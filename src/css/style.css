@@ -226,33 +226,32 @@ img {
   overflow: hidden;
   pointer-events: none;
   user-select: none;
+  contain: strict;
   font-family: var(--mono);
   font-size: 11px;
   font-weight: 600;
   line-height: 14px;
   white-space: pre;
   color: var(--fg-muted);
-  opacity: 0.22;
+  opacity: 0.4;
   /* fade toward the center so the text column sits in calm water */
   -webkit-mask-image: radial-gradient(ellipse 70% 75% at 50% 50%, transparent 30%, #000 90%);
   mask-image: radial-gradient(ellipse 70% 75% at 50% 50%, transparent 30%, #000 90%);
 }
 
 [data-theme="dark"] .ascii-bg {
-  opacity: 0.26;
+  opacity: 0.45;
 }
 
-/* ripple overlay: full-contrast ink, no center fade, so disturbances pop */
+/* drop heads: full-contrast leading glyphs over the muted trails */
 .ascii-bg-ripples {
   color: var(--fg);
   font-weight: 400;
-  opacity: 0.3;
-  -webkit-mask-image: none;
-  mask-image: none;
+  opacity: 0.5;
 }
 
 [data-theme="dark"] .ascii-bg-ripples {
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
 .intro {

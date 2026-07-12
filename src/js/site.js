@@ -5,99 +5,94 @@ document.getElementById("theme-toggle").addEventListener("click", function () {
   localStorage.setItem("theme", next);
 });
 
-// ASCII wave field — random interference pattern, drifting slowly.
-// Random frequencies/phases per visit; ~9fps stepped updates keep the
-// terminal feel and the cost negligible. Honors prefers-reduced-motion.
+// Math rain — sparse terminal rain whose glyphs are LaTeX/math symbols.
+// Trails render muted on the base layer; each drop's leading glyph renders
+// full-contrast on the overlay. Stepped ~7fps for the terminal cadence.
+// Honors prefers-reduced-motion (static frame, no fall).
 (function () {
   var el = document.getElementById("ascii-bg");
-  var rippleEl = document.getElementById("ascii-bg-ripples");
-  if (!el || !rippleEl) return;
-  var chars = [" ", " ", " ", ".", "·", "~", "≈", "~"];
-  var f1 = 0.1 + Math.random() * 0.06;
-  var f2 = 0.05 + Math.random() * 0.03;
-  var p1 = Math.random() * 6.28;
-  var p2 = Math.random() * 6.28;
-  var cols = 0, rows = 0;
+  var headEl = document.getElementById("ascii-bg-ripples");
+  if (!el || !headEl) return;
 
-  function measure() {
-    var cw = 6.6, lh = 14; // match .ascii-bg font metrics
-    cols = Math.ceil(window.innerWidth / cw) + 1;
-    rows = Math.ceil(window.innerHeight / lh) + 1;
+  var GLYPHS = "∂∇Σλθπ∫αβγμσφψΩξητ≈∞×01+−=";
+  var CW = 6.6, LH = 14; // match .ascii-bg font metrics
+  var cols = 0, rows = 0;
+  var drops = [];
+
+  function glyph() {
+    return GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
   }
 
-  // cursor ripples: each source emits an expanding, decaying ring
-  var ripples = [];
-  var RIPPLE_LIFE = 2200; // ms
+  function measure() {
+    cols = Math.ceil(window.innerWidth / CW) + 1;
+    rows = Math.ceil(window.innerHeight / LH) + 1;
+  }
 
-  function render(t) {
-    var a = p1 + t * 0.00028; // the two components roll in
-    var b = p2 - t * 0.00019; // opposite directions
-    var cw = 6.6, lh = 14;
-    var live = [];
-    for (var i = 0; i < ripples.length; i++) {
-      var r = ripples[i];
-      var age = t - r.t0;
-      if (age < RIPPLE_LIFE) live.push({ x: r.x, y: r.y, age: age / 1000, decay: Math.exp(-(age / 1000) * 1.8) });
-    }
-    ripples = ripples.filter(function (r) { return t - r.t0 < RIPPLE_LIFE; });
+  function spawn() {
+    var len = 3 + Math.floor(Math.random() * 6);
+    var chars = [];
+    for (var i = 0; i < len; i++) chars.push(glyph());
+    drops.push({
+      col: Math.floor(Math.random() * cols),
+      y: -len,                            // enter from above the fold
+      period: 2 + Math.floor(Math.random() * 3), // ticks per row-step
+      phase: 0,
+      len: len,
+      chars: chars,
+    });
+  }
 
-    var lines = [];
-    var rippleLines = [];
+  function render() {
+    var grid = [], heads = [];
     for (var y = 0; y < rows; y++) {
-      var line = "";
-      var rline = "";
-      var py = y * lh;
-      for (var x = 0; x < cols; x++) {
-        var v = Math.sin(x * f1 + y * 0.7 + a) + Math.sin(x * f2 + y * 0.35 + b);
-        line += chars[Math.round(((v + 2) / 4) * (chars.length - 1))];
-        if (live.length) {
-          var rv = 0;
-          for (var k = 0; k < live.length; k++) {
-            var rp = live[k];
-            var dx = x * cw - rp.x;
-            var dy = py - rp.y;
-            var d = Math.sqrt(dx * dx + dy * dy);
-            rv += 1.1 * Math.cos(d * 0.075 - rp.age * 8) * Math.exp(-d * 0.022) * rp.decay;
-          }
-          if (rv > 0.35 || rv < -0.35) {
-            var cv = v + rv;
-            if (cv < -2) cv = -2;
-            if (cv > 2) cv = 2;
-            rline += chars[Math.round(((cv + 2) / 4) * (chars.length - 1))];
-          } else {
-            rline += " ";
-          }
-        }
-      }
-      lines.push(line);
-      if (live.length) rippleLines.push(rline);
+      grid.push(new Array(cols).fill(" "));
+      heads.push(new Array(cols).fill(" "));
     }
-    el.textContent = lines.join("\n");
-    rippleEl.textContent = live.length ? rippleLines.join("\n") : "";
+    for (var i = 0; i < drops.length; i++) {
+      var d = drops[i];
+      var headRow = Math.floor(d.y);
+      for (var j = 0; j < d.len; j++) {
+        var y2 = headRow - j;
+        if (y2 < 0 || y2 >= rows || d.col >= cols) continue;
+        if (j === 0) heads[y2][d.col] = d.chars[0];
+        else grid[y2][d.col] = d.chars[j];
+      }
+    }
+    el.textContent = grid.map(function (r) { return r.join(""); }).join("\n");
+    headEl.textContent = heads.map(function (r) { return r.join(""); }).join("\n");
+  }
+
+  function tick() {
+    var moved = false;
+    for (var i = drops.length - 1; i >= 0; i--) {
+      var d = drops[i];
+      if (++d.phase >= d.period) {
+        d.phase = 0;
+        d.y += 1;
+        moved = true;
+        // a rare glyph mutation, like a flaky display
+        if (Math.random() < 0.03) d.chars[1 + Math.floor(Math.random() * (d.len - 1))] = glyph();
+      }
+      if (d.y - d.len > rows) drops.splice(i, 1);
+    }
+    // keep the storm sparse: aim for ~1 drop per 12 columns
+    if (drops.length < cols / 12 && Math.random() < 0.35) spawn();
+    if (moved) render();
   }
 
   measure();
-  render(0);
+  // pre-roll so the first paint already has rain mid-fall
+  for (var w = 0; w < 120; w++) tick();
 
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     var last = 0;
-    requestAnimationFrame(function tick(now) {
-      var interval = 140; // one calm cadence, rippling or not
-      if (now - last >= interval) {
+    requestAnimationFrame(function loop(now) {
+      if (now - last >= 140) {
         last = now;
-        render(now);
+        tick();
       }
-      requestAnimationFrame(tick);
+      requestAnimationFrame(loop);
     });
-
-    var lastRipple = 0;
-    window.addEventListener("mousemove", function (e) {
-      var now = performance.now();
-      if (now - lastRipple < 120) return;
-      lastRipple = now;
-      ripples.push({ x: e.clientX, y: e.clientY, t0: now });
-      if (ripples.length > 8) ripples.shift();
-    }, { passive: true });
   }
 
   var t;
@@ -105,7 +100,7 @@ document.getElementById("theme-toggle").addEventListener("click", function () {
     clearTimeout(t);
     t = setTimeout(function () {
       measure();
-      render(performance.now());
+      render();
     }, 200);
   });
 })();
