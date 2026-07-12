@@ -215,71 +215,33 @@ img {
   text-decoration: underline;
 }
 
+/* ascii margin texture: denser toward the page edges, silent under the
+   text column — a typographic vignette that focuses the center */
+.ascii-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  margin: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  contain: strict;
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 14px;
+  white-space: pre;
+  color: var(--fg-muted);
+  opacity: 0.5;
+  /* soften the top and bottom so the panels feel lit from the middle */
+  -webkit-mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent);
+}
+
+[data-theme="dark"] .ascii-bg {
+  opacity: 0.55;
+}
+
 /* ------------------------------------------------------------- homepage */
-
-/* digital hallway: one-point-perspective wireframe receding behind the
-   page; the vanishing point sits in fog under the content column */
-.hallway {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0.32;
-  -webkit-mask-image: radial-gradient(ellipse 60% 66% at 50% 50%, transparent 15%, #000 82%);
-  mask-image: radial-gradient(ellipse 60% 66% at 50% 50%, transparent 15%, #000 82%);
-}
-
-/* the slow dolly: every ring drifts outward exactly one depth slot per
-   loop, so the cycle is seamless; the rails map onto themselves */
-.hallway .ring {
-  transform-box: view-box;
-  transform-origin: 50% 50%;
-  animation: hall-travel 5s linear infinite;
-}
-
-@keyframes hall-travel {
-  to { transform: scale(1.19048); } /* 1 / 0.84 */
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hallway .ring {
-    animation: none;
-  }
-}
-
-/* the light at the end of the hallway */
-.hall-glow {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: radial-gradient(ellipse 26% 30% at 50% 50%,
-    color-mix(in srgb, var(--accent-2) 14%, transparent),
-    transparent 70%);
-}
-
-[data-theme="dark"] .hall-glow {
-  background: radial-gradient(ellipse 26% 30% at 50% 50%,
-    color-mix(in srgb, var(--accent-2) 22%, transparent),
-    transparent 70%);
-}
-
-/* the hallway recedes into the accent light */
-.vp-core { stop-color: var(--accent-2); }
-.vp-mid  { stop-color: var(--accent); }
-.vp-edge { stop-color: var(--fg-muted); }
-
-.hallway svg {
-  display: block;
-}
-
-.hallway * {
-  vector-effect: non-scaling-stroke;
-}
-
-[data-theme="dark"] .hallway {
-  opacity: 0.42;
-}
 
 .intro {
   display: flex;
@@ -1049,8 +1011,7 @@ pre code {
   .site-footer,
   .cv-download,
   .cv-head,
-  .hallway,
-  .hall-glow,
+  .ascii-bg,
   .toc,
   .toc-inline,
   .crumb {
