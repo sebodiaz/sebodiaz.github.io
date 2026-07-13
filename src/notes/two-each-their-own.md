@@ -4,7 +4,7 @@ title: "DecoderCR"
 date: 2026-07-02
 displayDate: "July 7th, 2026"
 tags: ["immunology", "ml", "biology"]
-draft: false
+draft: true
 ---
 
 Here, I go over [DecoderTCR: Compositional Pretraining and Entropy-Guided Decoding for TCR-pMHC Interactions](https://www.biorxiv.org/content/10.64898/2026.02.04.703820v1).
