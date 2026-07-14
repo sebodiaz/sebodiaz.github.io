@@ -1,7 +1,6 @@
 ---
 layout: base.njk
 math: true
-prose: true
 ---
 <article class="article">
   <header class="article-header">
@@ -13,6 +12,8 @@ prose: true
       &nbsp;&middot;&nbsp;
       {%- for tag in tags %}<span class="tag">{{ tag }}</span>{% endfor %}
       {%- endif %}
+      &nbsp;&middot;&nbsp;
+      <a href="/notes/{{ page.fileSlug }}.md" download>Download as Markdown</a>
     </p>
   </header>
   {%- set toc = content | tocEntries %}

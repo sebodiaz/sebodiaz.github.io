@@ -2,7 +2,7 @@
    Sebo Diaz — personal site
    Retro terminal, ice palette: cool near-white paper by day, cold near-black
    with steel-blue phosphor by night.
-   Mono type carries the chrome (wordmark, labels, meta); prose stays serif.
+   Fully monospace (JetBrains Mono, a free stand-in for Berkeley Mono).
 --------------------------------------------------------------------------- */
 
 :root {
@@ -25,10 +25,10 @@
   --code-function: #8250df;
   --code-class: #116329;
 
-  --display: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
-  --sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --serif: "IBM Plex Serif", "Charter", "Bitstream Charter", Cambria, Georgia, serif;
-  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", "Cascadia Code", "Fira Mono", Menlo, monospace;
+  --display: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --sans: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --serif: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", "Cascadia Code", "Fira Mono", Menlo, monospace;
 }
 
 [data-theme="dark"] {
@@ -906,6 +906,13 @@ pre code {
   margin-bottom: 0.5rem;
 }
 
+.cv-download-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
 .btn {
   display: inline-block;
   font-size: 0.88rem;
@@ -979,6 +986,10 @@ pre code {
 }
 
 @media (max-width: 640px) {
+  .cv-head {
+    flex-direction: column;
+  }
+
   .cv-row {
     flex-direction: column;
     gap: 0;
@@ -1010,6 +1021,7 @@ pre code {
   .site-header,
   .site-footer,
   .cv-download,
+  .cv-download-group,
   .cv-head,
   .ascii-bg,
   .toc,

@@ -52,6 +52,9 @@ module.exports = function (eleventyConfig) {
     "node_modules/katex/dist/katex.min.css": "css/katex/katex.min.css",
     "node_modules/katex/dist/fonts": "css/katex/fonts",
   });
+  // raw Markdown sources, served alongside each note's HTML for
+  // machine/LLM-agent consumption (e.g. /notes/my-note.md)
+  eleventyConfig.addPassthroughCopy("src/notes/*.md");
 
   // "2025-12-12" -> "Dec 2025" (string parsing avoids timezone off-by-one)
   eleventyConfig.addFilter("monthYear", (iso) => {

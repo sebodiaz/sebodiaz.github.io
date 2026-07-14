@@ -1,0 +1,53 @@
+---
+permalink: /files/cv.md
+eleventyExcludeFromCollections: true
+---
+# {{ site.name | safe | striptags }}
+
+{% for email in site.emails %}{{ email | safe }}{% if not loop.last %} · {% endif %}{% endfor %} · sebodiaz.github.io
+
+_Updated {{ cv.updated | safe }}_
+
+## Overview
+
+{% for item in cv.overview %}- {{ item | safe }}
+{% endfor %}
+## Education
+
+{% for edu in cv.education %}- **{{ edu.school | safe }}** ({{ edu.dates | safe }}) — {{ edu.degree | safe }}, {{ edu.detail | safe }}
+{% endfor %}
+## Industry Experience
+
+{% for job in cv.experience %}- **{{ job.role | safe }}**, {{ job.org | safe }} — {{ job.location | safe }} ({{ job.dates | safe }})
+{% for bullet in job.bullets %}  - {{ bullet | safe }}
+{% endfor %}{% endfor %}
+## Fellowships & Awards
+
+{% for award in cv.awards %}- **{{ award.name | safe }}**, {{ award.org | safe }} ({{ award.year | safe }})
+{% endfor %}
+## Publications
+
+### Lead Author
+
+{% for pub in cv.publications.lead %}{{ loop.index }}. {{ pub.authors | safe | striptags }}. "{{ pub.title | safe }}"{% if pub.url %} ({{ pub.url | safe }}){% endif %}. _{{ pub.venue | safe }}_, {{ pub.year | safe }}.
+{% endfor %}
+### Contributing Author
+
+{% for pub in cv.publications.contributing %}{{ loop.index }}. {{ pub.authors | safe | striptags }}. "{{ pub.title | safe }}"{% if pub.url %} ({{ pub.url | safe }}){% endif %}. _{{ pub.venue | safe }}_, {{ pub.year | safe }}.
+{% endfor %}
+## Invited Talks
+
+{% for talk in cv.talks %}- **{{ talk.title | safe }}** — {{ talk.venue | safe }} ({{ talk.date | safe }})
+{% endfor %}
+## Relevant Coursework
+
+{% for course in cv.coursework %}- **{{ course.org | safe }}**: {{ course.items | safe }}
+{% endfor %}
+## Skills
+
+{% for skill in cv.skills %}- **{{ skill.label | safe }}**: {{ skill.items | safe }}
+{% endfor %}
+## Service
+
+{% for item in cv.service %}- **{{ item.role | safe }}**, {{ item.org | safe }} ({{ item.year | safe }})
+{% endfor %}
